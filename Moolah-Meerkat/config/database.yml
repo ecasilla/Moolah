@@ -17,7 +17,7 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: Moolah_development
+  database: moolah_development
   pool: 5
   username: Paris
   password:
