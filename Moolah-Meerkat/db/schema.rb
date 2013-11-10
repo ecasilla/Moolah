@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131110220157) do
+ActiveRecord::Schema.define(version: 20131110234852) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "achievements", force: true do |t|
     t.integer  "user_id"
@@ -44,10 +47,16 @@ ActiveRecord::Schema.define(version: 20131110220157) do
   end
 
   create_table "goals", force: true do |t|
-    t.string   "name",         null: false
-    t.text     "description"
-    t.integer  "final_amount", null: false
-    t.date     "deadline"
+    t.string  "name",         null: false
+    t.text    "description"
+    t.integer "final_amount", null: false
+    t.date    "deadline"
+  end
+
+  create_table "transactions", force: true do |t|
+    t.integer  "balance_id"
+    t.string   "name",       null: false
+    t.integer  "amount",     null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
