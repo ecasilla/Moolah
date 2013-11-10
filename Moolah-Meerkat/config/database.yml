@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: Moolah-Meerkat_development
+  database: Moolah_development
   pool: 5
-  username: Moolah-Meerkat
+  username: Paris
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
