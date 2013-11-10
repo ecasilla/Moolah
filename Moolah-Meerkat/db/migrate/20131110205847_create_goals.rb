@@ -4,7 +4,7 @@ class CreateGoals < ActiveRecord::Migration
       t.string :name, null: false
       t.text :description
       t.integer :final_amount, null: false
-      t.date :time_line
+      t.date :deadline
 
       t.timestamp
      end
