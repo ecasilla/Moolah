@@ -2,5 +2,5 @@ class Goal < ActiveRecord::Base
 	validates :name, :final_amount, presence: true
 	has_and_belongs_to_many :users
 	has_many :balances
-  has_many :tranactions :through => :balance
+  has_many :tranactions :through => :balances
 end
