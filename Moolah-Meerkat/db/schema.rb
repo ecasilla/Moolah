@@ -11,15 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20131111171413) do
-=======
-ActiveRecord::Schema.define(version: 20131111173556) do
->>>>>>> 3699239d42b121ddc914f8478d9980ff90eb6652
-=======
-ActiveRecord::Schema.define(version: 20131111171413) do
->>>>>>> 092e6eedd742b664ca1019811107ea6dfc1ae9b3
+ActiveRecord::Schema.define(version: 20131111211902) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,33 +26,24 @@ ActiveRecord::Schema.define(version: 20131111171413) do
   end
 
   create_table "connections", force: true do |t|
+    t.integer "user_id"
+    t.integer "friend_id"
+  end
+
+  create_table "goals", force: true do |t|
+    t.string   "name",         null: false
+    t.text     "description"
+    t.integer  "final_amount", null: false
+    t.date     "deadline"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "connections_users", force: true do |t|
-    t.integer "user_id"
-    t.integer "connection_id"
-  end
-
-  create_table "goals", force: true do |t|
-    t.string  "name",         null: false
-    t.text    "description"
-    t.integer "final_amount", null: false
-    t.date    "deadline"
-  end
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
   create_table "goals_users", force: true do |t|
     t.integer "goal_id"
     t.integer "user_id"
   end
 
->>>>>>> 3699239d42b121ddc914f8478d9980ff90eb6652
-=======
->>>>>>> 092e6eedd742b664ca1019811107ea6dfc1ae9b3
   create_table "transactions", force: true do |t|
     t.integer  "user_id"
     t.integer  "goal_id"
