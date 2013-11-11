@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :goals
 	has_many :achievements
 	has_many :connections
-	has_many :balances :through => :goals
+	has_many :tranactions :through => :goals
 end
