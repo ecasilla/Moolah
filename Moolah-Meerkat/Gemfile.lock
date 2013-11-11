@@ -152,6 +152,7 @@ DEPENDENCIES
   execjs
   jbuilder (~> 1.2)
   jquery-rails
+  omniauth
   omniauth-facebook
   pg
   rails (= 4.0.0)
