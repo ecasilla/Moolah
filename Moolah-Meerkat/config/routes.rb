@@ -4,16 +4,28 @@ MoolahMeerkat::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get]
   
   root 'welcome#index'
+<<<<<<< HEAD
+  
+=======
  
+>>>>>>> master
   resources :users, except: [:index] do
+    
+    collection do
+      get 'search'
+    end
+
     resources :achievements, only: [:index] do
     end
+
     resources :goals do
       resources :transactions do
       end
     end
-    resources :connections do
+
+    resources :connections, only: [:create, :index, :destroy] do
     end
+
   end
 
 end
