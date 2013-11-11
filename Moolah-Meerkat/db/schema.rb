@@ -36,12 +36,10 @@ ActiveRecord::Schema.define(version: 20131111173556) do
   end
 
   create_table "goals", force: true do |t|
-    t.string   "name",         null: false
-    t.text     "description"
-    t.integer  "final_amount", null: false
-    t.date     "deadline"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name",         null: false
+    t.text    "description"
+    t.integer "final_amount", null: false
+    t.date    "deadline"
   end
 
   create_table "goals_users", force: true do |t|
