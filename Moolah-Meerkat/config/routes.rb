@@ -1,4 +1,5 @@
 MoolahMeerkat::Application.routes.draw do
+<<<<<<< HEAD
   
   root 'welcome#index'
 
@@ -30,18 +31,18 @@ MoolahMeerkat::Application.routes.draw do
   #       get 'recent', on: :collection
   #     end
   #   end
+=======
+>>>>>>> 3699239d42b121ddc914f8478d9980ff90eb6652
   
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  resources :users, except: [:index] do
+    resources :achievements, only: [:index] do
+    end
+    resources :goals do
+      resources :transactions do
+      end
+    end
+    resources :connections do
+    end
+  end
+  
 end
