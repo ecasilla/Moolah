@@ -10,6 +10,8 @@ gem 'execjs'
 gem 'jquery-rails'
 gem 'turbolinks'
 gem 'jbuilder', '~> 1.2'
+gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
 group :doc do
   gem 'sdoc', require: false
@@ -19,19 +21,7 @@ group :development do
   gem 'better_errors'
 end
 
-<<<<<<< HEAD
-gem 'bcrypt-ruby', '~> 3.0.0'
-gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
-=======
-# Use ActiveModel has_secure_password
- gem 'bcrypt-ruby', '~> 3.0.0'
 
- gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 
-# Use unicorn as the app server
-# gem 'unicorn'
 
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
->>>>>>> d543424357d4e144091104c089bf5e3e50a3bdbe
 
