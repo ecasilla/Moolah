@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20131111173556) do
+=======
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 563d3f5f648ad73a06a465fe473ab7aa1197d254
+ActiveRecord::Schema.define(version: 20131111211902) do
+=======
+ActiveRecord::Schema.define(version: 20131111213847) do
+>>>>>>> master
+<<<<<<< HEAD
+=======
+ActiveRecord::Schema.define(version: 20131111213847) do
+>>>>>>> master
+=======
+>>>>>>> 563d3f5f648ad73a06a465fe473ab7aa1197d254
+>>>>>>> master
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,13 +44,8 @@ ActiveRecord::Schema.define(version: 20131111173556) do
   end
 
   create_table "connections", force: true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "connections_users", force: true do |t|
     t.integer "user_id"
-    t.integer "connection_id"
+    t.integer "friend_id"
   end
 
   create_table "goals", force: true do |t|
@@ -59,14 +72,17 @@ ActiveRecord::Schema.define(version: 20131111173556) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "first_name",      null: false
-    t.string   "last_name",       null: false
-    t.string   "email",           null: false
-    t.string   "password_digest", null: false
+    t.string   "first_name",       null: false
+    t.string   "last_name",        null: false
+    t.string   "email",            null: false
     t.text     "photo_url"
     t.integer  "total_savings"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "provider"
+    t.string   "uid"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
