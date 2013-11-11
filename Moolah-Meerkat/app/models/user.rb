@@ -4,27 +4,13 @@ class User < ActiveRecord::Base
 	has_and_belongs_to_many :goals
 	has_many :achievements
 	has_many :connections
-<<<<<<< HEAD
+
 	has_many :transactions, through: :goals
-=======
+
 
   has_many :friends, :through => :connections
   has_many :inverse_connections, :class_name => "Connection", :foreign_key => "friend_id"
   has_many :inverse_friends, :through => :inverse_connections, :source => :user
-	has_many :transactions, :through => :goals
-	has_and_belongs_to_many :goals
-	has_many :achievements
-	has_many :connections
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-  has_many :friends, :through => :connections
-  has_many :inverse_connections, :class_name => "Connection", :foreign_key => "friend_id"
-  has_many :inverse_friends, :through => :inverse_connections, :source => :user
-	has_many :transactions, :through => :goals
-=======
->>>>>>> 563d3f5f648ad73a06a465fe473ab7aa1197d254
 	has_many :transactions, :through => :goals
 
   def self.from_omniauth(auth)
@@ -40,9 +26,3 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-<<<<<<< HEAD
-=======
->>>>>>> master
->>>>>>> 563d3f5f648ad73a06a465fe473ab7aa1197d254
->>>>>>> master
-end

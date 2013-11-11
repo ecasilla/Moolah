@@ -4,14 +4,6 @@ MoolahMeerkat::Application.routes.draw do
   match 'signout', to: 'sessions#destroy', as: 'signout', via: [:get]
   
   root 'welcome#index'
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-  
-=======
- 
->>>>>>> master
->>>>>>> 563d3f5f648ad73a06a465fe473ab7aa1197d254
   resources :users, except: [:index] do
     
     collection do
@@ -32,4 +24,4 @@ MoolahMeerkat::Application.routes.draw do
   end
 end
 
-end
+
