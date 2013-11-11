@@ -9,17 +9,15 @@ class GoalsController < ApplicationController
     @goal = Goal.new
     # for adding connections to group goal
      @connections = User.connections.all
-     goals. params[:friend_id]
+      # add new goal to the current user
      @user.goals << @goal
-     # logic to append user's connections to Goal.new
-
-
+     # add user's friends to new goal
+     @goal.users << params[:friend_id]
       render :new
   end
 
   def show
     @goal = User.goals.find(params[:id])
-
   end
 
   def index
