@@ -3,6 +3,6 @@ development:
   encoding: unicode
   database: moolah_development
   pool: 5
-  username: Paris
+  username: 
   password:
 
