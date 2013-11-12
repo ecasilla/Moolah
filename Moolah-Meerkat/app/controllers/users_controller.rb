@@ -9,8 +9,7 @@ class UsersController < ApplicationController
   
   def search
     query = params[:query].split(" ").each {|name| name.capitalize!}
-    if query[1].nil? && query.length == 2
-      query.pop
+    if query[1].nil?
       query << 'none'
     end
     @users = User.where('first_name = ' + query[0] + ' OR ' + 'last_name = ' + query[1]) 
