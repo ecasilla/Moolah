@@ -1,29 +1,18 @@
 <div class="well">
-  <form role="form">
-    <div class="form-horizontal">
-      <div class="input-group">
-      <%= form_for [:user, @goal], :html => { :class => "form-horizontal"} do |f| %>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-      </div>
+  <div class="form"
+      <%= form_for [:user, @goal] do |f| %>
+        <%= f.label :name %></br>
+        <%= f.text_field :name, :class => 'field' %></br>
 
-      <div class="input-group">
-        <%= f.label :description %>
-        <%= f.text_field :description %>
-      </div>   
+        <%= f.label :description %></br>
+        <%= f.text_field :description, :class => 'field' %></br>  
 
-      <div class="input-group">
-        <%= f.label :final_amount %>
-      <span class="input-group-addon">$</span>
-        <%= f.text_field :final_amount %>
-      </div>
+        <%= f.label :final_amount %></br>
+        <%= f.text_field :final_amount, :class => 'field' %></br>
 
-      <div class="input-group">
-        <%= f.label :deadline %>
-        <%= f.date_field :deadline %>
-      </div>
-        <%= f.submit %>
+        <%= f.label :deadline %></br>
+        <%= f.date_field :deadline, :class => 'field' %></br>
+        <%= f.submit 'Add Goal', :class => 'form_button'%>
       <% end  %>  
-    </div>
-  </form>
+  </div>
 </div>
