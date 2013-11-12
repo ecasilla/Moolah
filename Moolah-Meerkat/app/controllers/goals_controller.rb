@@ -1,20 +1,20 @@
 class GoalsController < ApplicationController
 
+before_action :current_user
+
   def new
-    @user = User.find_by(id: params[:user_id])
     @goal = Goal.new
     render :new
   end
 
   def create
-    @user = User.find_by(id: params[:user_id])
     @goal = Goal.new(goal_params)
     # add new goal to the current user
     if @goal.save
-      @user.goals << @goal
-      redirect_to user_path(@user)
+      current_user.goals << @goal
+      redirect_to user_goal_path(current_user, @goal)
     else
-      redirect_to new_user_goal_path(@user)
+      redirect_to new_user_goal_path(current_user)
     end
     
    # for adding connections to group goal
@@ -24,8 +24,8 @@ class GoalsController < ApplicationController
   end
 
   def show
-    # @user = User.find(params[:id])
-    @goal = current_user.goals.find(params[:id])
+    @user = User.find(params[:user_id])
+    @goal = @user.goals.find(params[:id])
   end
 
   def index
@@ -44,7 +44,7 @@ class GoalsController < ApplicationController
   private
 
   def goal_params
-    params.require(:goal).permit(:name, :final_amount)
+    params.require(:goal).permit(:name, :deadline, :final_amount)
   end
 
 end
