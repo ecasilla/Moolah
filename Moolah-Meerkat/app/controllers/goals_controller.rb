@@ -23,11 +23,8 @@ class GoalsController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
-=======
     # @user = User.find(params[:id])
     @goal = current_user.goals.find(params[:id])
->>>>>>> 5eb05918de37ebdfca48bab333ce56ab706e5f81
   end
 
   def index
