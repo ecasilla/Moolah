@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
 
 
   def total_savings
-    self.transactions.inject(0) { |total, transaction| total + transaction }
+    self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
 
 
