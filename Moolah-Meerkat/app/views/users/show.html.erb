@@ -1,1 +1,12 @@
-<h1> test </h1>
+<img src=<%= @user.photo_url %>>
+<%= @user.first_name %> <%= @user.last_name %>
+<%= @user.total_savings %>
+<ul>
+  <% @user.goals.each do |goal| %>
+    <ul>
+      <li><%= goal.name %></li> 
+      <li><%= goal.description %> by <%= goal.deadline %></li>
+      <li><%= goal.balance(@user.id) %></li>
+    </ul>
+  <% end %>
+</ul>
