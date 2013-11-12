@@ -17,7 +17,6 @@ class GoalsController < ApplicationController
   end
 
   def show
-    @goal = User.goals.find(params[:id])
   end
 
   def index
