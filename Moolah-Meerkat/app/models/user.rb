@@ -10,6 +10,9 @@ class User < ActiveRecord::Base
   has_many :inverse_friends, :through => :inverse_connections, :source => :user
   has_many :transactions, :through => :goals
 
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
       user.provider = auth.provider
