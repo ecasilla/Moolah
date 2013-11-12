@@ -11,4 +11,3 @@ user2 = User.create(first_name: "Arun", last_name: "Umap", email: "arunumap@gmai
 
 goal = Goal.create(name: "going to europe", description: "save 20", final_amount: 20, deadline: "10/20/1986")
 user.goals << goal
-
