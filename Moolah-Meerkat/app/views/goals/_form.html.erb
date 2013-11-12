@@ -1,18 +1,27 @@
 <div class="well">
-  <div class="form"
-      <%= form_for [:user, @goal] do |f| %>
-        <%= f.label :name %></br>
-        <%= f.text_field :name, :class => 'field' %></br>
-
-        <%= f.label :description %></br>
-        <%= f.text_field :description, :class => 'field' %></br>  
-
-        <%= f.label :final_amount %></br>
-        <%= f.text_field :final_amount, :class => 'field' %></br>
-
-        <%= f.label :deadline %></br>
-        <%= f.date_field :deadline, :class => 'field' %></br>
-        <%= f.submit 'Add Goal', :class => 'form_button'%>
-      <% end  %>  
+<%= form_for [@user, @goal], :action => :create, :html => {:class => 'form',:role => 'form'} do |f| %>
+  <div class="form-group">
+    <%= f.label :name %></br>
+    <%= f.text_field :name, :class => 'field' %></br>
   </div>
+
+  <div class="form-group">
+    <%= f.label :description %></br>
+    <%= f.text_field :description, :class => 'field' %></br>  
+  </div>
+
+  <div class="form-group">
+    <%= f.label :final_amount %></br>
+    <%= f.text_field :final_amount, :class => 'field' %></br>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :deadline %></br>
+    <%= f.date_field :deadline, :class => 'field' %></br>
+  </div>
+
+    <%= f.submit %>
+
+<% end  %> 
+
 </div>
