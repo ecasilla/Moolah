@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
 
-before_action :current_user
+before_action :authenticated!, :current_user
 
   def new
     @goal = Goal.new
@@ -44,7 +44,8 @@ before_action :current_user
   private
 
   def goal_params
-    params.require(:goal).permit(:name, :deadline, :final_amount)
+    params.require(:goal).permit(:name, :description, :deadline, :final_amount)
   end
+
 
 end

@@ -11,8 +11,13 @@ class Goal < ActiveRecord::Base
         balance += transaction.amount
       end
     end
-
+    
     balance
   end
-  
+
+  def transform_date
+    d = Date.parse(self.deadline.to_s)
+    return "#{Date::MONTHNAMES[d.mon]} #{d.mday}, #{d.year}"
+  end
+
 end
