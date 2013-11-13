@@ -8,7 +8,7 @@ before_action :authenticated!, :current_user
   def create
     #@transaction = Transaction.new(transaction_params)
     @transaction = Transaction.new(user_id: params[:user_id], amount: params[:amount], description: params[:description])
-      @goal = Goal.find(params[:goal_id])
+    @goal = Goal.find(params[:goal_id])
     if @transaction.save
       @goal.transactions << @transaction
     end  
