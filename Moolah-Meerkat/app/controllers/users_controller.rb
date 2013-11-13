@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-before_action :authenticated!, :set_user, :authorized! 
+before_action :authenticated!, :set_user, :current_user
 
   def show
     @user = User.find(params[:id])
@@ -11,8 +11,7 @@ before_action :authenticated!, :set_user, :authorized!
   
   def search
     query = params[:query].split(" ").each {|name| name.capitalize!}
-    if query[1].nil? && query.length == 2
-      query.pop
+    if query[1].nil?
       query << 'none'
     end
     @users = User.where('first_name = ' + query[0] + ' OR ' + 'last_name = ' + query[1]) 
@@ -21,13 +20,14 @@ before_action :authenticated!, :set_user, :authorized!
 private
 
   def set_user
-      @user = User.find(params[:id])
+    @user = User.find(params[:id])
   end
 
-  def authorized!
-   unless @user.id == session[:user_id]
-      redirect_to user_path(session[:user_id])
-   end
-  end
+  # def authorized!
+  #  unless @user.id == session[:user_id]
+  #     redirect_to user_path(session[:user_id])
+  #  end
+  # end
+
 
 end
