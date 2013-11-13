@@ -19,6 +19,7 @@ before_action :authenticated!, :current_user
         end
       end
       @current_user.goals << @goal
+
       redirect_to user_goal_path(current_user, @goal)
     else
       redirect_to new_user_goal_path(current_user)
