@@ -3,8 +3,9 @@ class ConnectionsController < ApplicationController
   before_action :current_user
 
   def create
-    @connection = @current_user.connections.build(:friend_id => params[:friend_id])
-    if @connection.save
+    @connection1 = Connection.new(user_id: @current_user.id, friend_id: params[:friend_id])
+    @connection2 = Connection.new(user_id: params[:friend_id], friend_id: @current_user.id)
+    if @connection1.save && @connection2.save
       redirect_to user_path(@current_user)
     else
       redirect to user_path(params[:friend_id])

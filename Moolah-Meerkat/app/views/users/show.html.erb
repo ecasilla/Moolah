@@ -13,3 +13,10 @@
     </ul>
   <% end %>
 </ul>
+
+<h3><%= @user.first_name %>'s Friends</h3>
+<ul>
+  <% @user.connections.each do |connection| %>
+    <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
+  <% end %>
+</ul>
