@@ -23,11 +23,4 @@ private
     @user = User.find(params[:id])
   end
 
-  # def authorized!
-  #  unless @user.id == session[:user_id]
-  #     redirect_to user_path(session[:user_id])
-  #  end
-  # end
-
-
 end
