@@ -2,21 +2,23 @@
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
 <h2><%= @user.total_savings %></h2>
 
+<% if @current_user.id != @user.id %>
+  <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post' %>
+<% end %>
 
-<%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post' %> 
-<ul>
-  <% @user.goals.each do |goal| %>
-    <ul>
-      <li><%= goal.name %></li> 
-      <li><%= goal.description %> by <%= goal.deadline %></li>
-      <li><%= goal.balance(@user.id) %></li>
-    </ul>
-  <% end %>
-</ul>
+  <ul>
+    <% @user.goals.each do |goal| %>
+      <ul>
+        <li><%= goal.name %></li> 
+        <li><%= goal.description %> by <%= goal.deadline %></li>
+        <li><%= goal.balance(@user.id) %></li>
+      </ul>
+    <% end %>
+  </ul>
 
-<h3><%= @user.first_name %>'s Friends</h3>
-<ul>
-  <% @user.connections.each do |connection| %>
-    <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
-  <% end %>
-</ul>
+  <h3><%= @user.first_name %>'s Friends</h3>
+  <ul>
+    <% @user.connections.each do |connection| %>
+      <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
+    <% end %>
+  </ul>

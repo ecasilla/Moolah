@@ -25,11 +25,59 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
+  
+  def checkAchievement(goal)
+    if user.achievements.length > 1
+    end
+  end
 
+  def setAchievement(goal)
+    user_progress = progress(goal)
+        binding.pry
+    case user_progress
+     when user_progress <= 25
+       return "You have not reach an achievement"
+     when user_progress > 25
+      return "achievement 25%"
+      #>25% <50% achievement 1 LIMIT TO 1
+      #>50% <75% achievement 2 LIMIT TO 1
+      #<100% >75% achievement 3 LIMIT TO 1
+      # if == 100% achievement 4 LIMIT TO 1      
+    end
+  end
+
+
+  def progress(goal)
+    @famount = goal.final_amount
+    @famount = @famount.to_f 
+    @balance = goal.balance(id) 
+    @balance = @balance.to_f
+    @new_balance = @balance / @famount if @balance <= @famount
+    if @balance > @famount
+      return 
+    elsif @balance == 0
+      return  
+    else
+    @completetion = @new_balance *100
+   end
+   return @completetion.abs
+  end
 
   def total_savings
     self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
+
+    # def achievementCalc(goal_id)
+  #   @goal = goal_id
+  #   @famount = @goal.final_amount
+  #   @transaction = @goal.transactions
+  #   @getamount = @transaction
+  #   @amount = total_savings.to_i
+  #   @famount = @famount.to_f
+  #   @completetion = @amount/@famount *100
+  #   @completetion = @completetion.to_i
+  #   progress(@completetion,goal_id)
+  # end
 
 
 end
