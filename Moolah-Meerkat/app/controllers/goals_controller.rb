@@ -4,14 +4,25 @@ before_action :authenticated!, :current_user
 
   def new
     @goal = Goal.new
+
     render :new
   end
 
   def create
+   
     @goal = Goal.new(goal_params)
+
+
+
     # add new goal to the current user
     if @goal.save
-      current_user.goals << @goal
+      params.keys.each do |x|
+        if x.to_i > 0
+          User.find(x.to_i).goals << @goal
+          @current_user.goals << @goal
+        end
+      end
+
       redirect_to user_goal_path(current_user, @goal)
     else
       redirect_to new_user_goal_path(current_user)

@@ -20,12 +20,17 @@
     <%= f.date_field :deadline, :class => 'field' %></br>
   </div>
 
-    <%= f.submit %>
-  <ul>
     <% @current_user.friends.each do |friend| %>
-    <li><%= friend.first_name %><%= friend.last_name %> <%= f.checkbox :friend, {:friend => friend.id} %></li>
+<div class="checkbox">
+  <label>
+    <%= "#{friend.first_name} #{friend.last_name}" %> 
+    <input type="checkbox" name="<%= friend.id %>" value="blah" style="display:block">
+  </label>
+</div>
+<br/>
     <% end %>
-  </ul>  
+ 
+  <%= f.submit %>
 <% end  %> 
   
 </div>
