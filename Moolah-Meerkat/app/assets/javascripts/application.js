@@ -13,5 +13,20 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.ui.all
 //= require turbolinks
 //= require_tree .
+
+window.onload = function() {
+console.log("Load!");
+
+ };
+
+$( "#draggable" ).draggable();
+$( "#droppable" ).droppable({
+  drop: function() {
+    alert( "dropped" );
+  }
+});
+
+$('.slider').slider()

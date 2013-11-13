@@ -26,6 +26,20 @@
 
       <%= yield %>
       <%= render 'layouts/footer'%>
+
+ <!-- ############# for droppable ############### -->     
+
+      <script>
+        $( "#draggable" ).draggable();
+        $( "#droppable" ).droppable({
+          drop: function() {
+            alert( "dropped" );
+          }
+        });
+      </script>
+
+  
+
     <!-- </div> -->
   </body>
 </html>

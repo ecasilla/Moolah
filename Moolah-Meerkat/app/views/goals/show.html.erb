@@ -1,25 +1,46 @@
-<h2>Goal name: <%= @goal.name %></h2>
-<h2>Goal amount: $<%= @goal.final_amount %></h3>
+<div class="container">
+  <ul>
+    <li>Goal name: <%= @goal.name %></li>
+    <li>Goal amount: $<%= @goal.final_amount %></</li>
+    <li>Description: <%= @goal.description %></li>
+    <li>Deadline: <%= @goal.transform_date %></li>
+  </ul>  
+
+  <div class="balance">Your current savings: $<%= @goal.balance(@current_user.id) %>
+  </div> 
+
+  <div id="draggable">Drag me onto the money bag!</div>
 
 
-<div class="balance">Your current savings: $<%= @goal.balance(@current_user.id) %></div>  
+<input id="slide" type="text" class="span2" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-14" data-slider-orientation="vertical" data-slider-selection="after">
 
+ <!--  <input type="text" class="span2" value="" data-slider-min="-20" data-slider-max="20" data-slider-step="1" data-slider-value="-14" data-slider-orientation="vertical" data-slider-selection="after"data-slider-tooltip="hide"> -->
+
+<!--   <div id="slider"></div> -->
+  <div id="droppable">
+  <img alt="money-image" src="http://www.barcelonafootballblog.com/wp-content/uploads/2011/06/bag-of-money.jpg" style="margin-top: 10px" width="250px" height="250px"/>
+  </div>
+
+ 
+      
 <!-- 1. post a new transaction -->
-<%= form_tag user_goal_transactions_path(@current_user, @goal), :action => :post, :html => {:class => 'form',:role => 'form'} do %>
-  <div class="form-group">
-    <%= text_field_tag :description, nil, {placeholder: "description", class: 'field'} %></br>
-  </div>
+  <%= form_tag user_goal_transactions_path(@current_user, @goal), :action => :post, :html => {:class => 'form',:role => 'form'} do %>
+    <div class="form-transaction">
+      <%= text_field_tag :description, nil, {placeholder: "description", class: 'field'} %></br>
+    </div>
 
-  <div class="form-group">
-    <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
-  </div>
+    <div class="form-group">
+       <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
+    </div>
 
-    <%= submit_tag %>
- <% end  %>    
+      <%= submit_tag %>
+  <% end  %>    
 
-<!-- 2. run the balance method -->
+</div>
 
-<ul>
-  <li>Description: <%= @goal.description %></li>
-  <li>Deadline: <%= @goal.transform_date %></li>
-</ul>
+
+
+
+
+
+
