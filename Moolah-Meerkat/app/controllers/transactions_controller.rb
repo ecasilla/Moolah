@@ -12,7 +12,7 @@ before_action :authenticated!, :current_user
     if @transaction.save
       @goal.transactions << @transaction
       @user.setAchievement(@goal)
-      binding.pry 
+      binding.pry
     end  
     redirect_to user_goal_path(@current_user, @goal)
   end
