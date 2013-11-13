@@ -6,11 +6,13 @@ before_action :authenticated!, :current_user
   end
 
   def create
-    #@transaction = Transaction.new(transaction_params)
+    @user = current_user
     @transaction = Transaction.new(user_id: params[:user_id], amount: params[:amount], description: params[:description])
       @goal = Goal.find(params[:goal_id])
     if @transaction.save
       @goal.transactions << @transaction
+      @user.setAchievement(@goal)
+      binding.pry 
     end  
     redirect_to user_goal_path(@current_user, @goal)
   end
@@ -29,12 +31,5 @@ before_action :authenticated!, :current_user
 
   def destroy
   end
-
-# private
-
-#   def transaction_params
-    #params.require(:transaction).permit(:user_id, :goal_id, :description, :amount)
-
-  # end
 
 end
