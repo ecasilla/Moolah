@@ -1,11 +1,24 @@
+div#user_nav {
+    position: fixed;
+    top: 4em;
+    z-index: 999;
+}
+ 
  div.mural {
 
     margin-top: -3em;
-    background: url("http://www.jetblue.com/img/vacations/destination/Cancun-960-x-420.jpg");
+/*    background: url("http://www.jetblue.com/img/vacations/destination/Cancun-960-x-420.jpg");*/
+    
+    background-size: cover !important; 
+    background-position: center;
+    background-attachment: fixed !important;
     background-repeat:no-repeat;
-    background-size: cover; 
-    background-position: absolute;
-    background-attachment: relative;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     padding-bottom: 40px;
 } 
 
@@ -19,7 +32,7 @@
 
  h2 {
     padding-top: 80px;
-    color: #ffffff;
+    color: gray;
     padding-bottom: 30px;
  }
 

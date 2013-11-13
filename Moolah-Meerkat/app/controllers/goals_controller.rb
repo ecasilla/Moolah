@@ -11,9 +11,6 @@ before_action :authenticated!, :current_user
   def create
    
     @goal = Goal.new(goal_params)
-
-
-
     # add new goal to the current user
     if @goal.save
       params.keys.each do |x|
@@ -22,7 +19,6 @@ before_action :authenticated!, :current_user
         end
       end
       @current_user.goals << @goal
-
 
       redirect_to user_goal_path(current_user, @goal)
     else
