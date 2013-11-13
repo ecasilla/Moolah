@@ -33,16 +33,18 @@ class User < ActiveRecord::Base
 
   def setAchievement(goal)
     user_progress = progress(goal)
-        binding.pry
+    user_progress.to_i
     case user_progress
-     when user_progress <= 25
-       return "You have not reach an achievement"
-     when user_progress > 25
+     when 1...25
+       return "You have not reached an achievement."
+     when 25...50
       return "achievement 25%"
-      #>25% <50% achievement 1 LIMIT TO 1
-      #>50% <75% achievement 2 LIMIT TO 1
-      #<100% >75% achievement 3 LIMIT TO 1
-      # if == 100% achievement 4 LIMIT TO 1      
+    when 50...75
+      return "achievement 50%"
+    when 75...100
+        return "achievement 75%"
+      when 100
+        return "you are king"     
     end
   end
 
@@ -66,18 +68,5 @@ class User < ActiveRecord::Base
   def total_savings
     self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
-
-    # def achievementCalc(goal_id)
-  #   @goal = goal_id
-  #   @famount = @goal.final_amount
-  #   @transaction = @goal.transactions
-  #   @getamount = @transaction
-  #   @amount = total_savings.to_i
-  #   @famount = @famount.to_f
-  #   @completetion = @amount/@famount *100
-  #   @completetion = @completetion.to_i
-  #   progress(@completetion,goal_id)
-  # end
-
 
 end
