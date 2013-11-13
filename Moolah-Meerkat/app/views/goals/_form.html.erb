@@ -21,7 +21,11 @@
   </div>
 
     <%= f.submit %>
-
+  <ul>
+    <% @current_user.friends.each do |friend| %>
+    <li><%= friend.first_name %><%= friend.last_name %> <%= f.checkbox :friend, {:friend => friend.id} %></li>
+    <% end %>
+  </ul>  
 <% end  %> 
-
+  
 </div>
