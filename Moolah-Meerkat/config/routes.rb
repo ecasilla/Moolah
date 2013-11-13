@@ -10,7 +10,7 @@ MoolahMeerkat::Application.routes.draw do
       get 'search'
     end
 
-    resources :achievements, only: [:index] do
+    resources :achievements, only: [:index, :show] do
     end
 
     resources :goals do
