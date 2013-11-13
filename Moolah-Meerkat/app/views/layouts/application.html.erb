@@ -10,7 +10,7 @@
   <body>
     <%= render 'layouts/header'%>
     <%= debug current_user %>
-    <div class="container">
+    <!-- <div class="container"> -->
         <div id="user_nav">
         <% if current_user %>
           Signed in as <strong><%= current_user.first_name %></strong>!
@@ -26,6 +26,6 @@
 
       <%= yield %>
       <%= render 'layouts/footer'%>
-    </div>
+    <!-- </div> -->
   </body>
 </html>
