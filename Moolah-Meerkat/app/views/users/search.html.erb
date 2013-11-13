@@ -1,3 +1,4 @@
+<div class="mural" style="background: url(<%= random_background %>)">
 <% if @users.length == 0 %>
   <p>We couldn't find that user. Either do a better job of searching or send them an invite below!</p>
   <!-- insert form for sending an invitation via email -->
@@ -8,3 +9,5 @@
     <% end %>
   </ul>
 <% end %>
+
+</div>
