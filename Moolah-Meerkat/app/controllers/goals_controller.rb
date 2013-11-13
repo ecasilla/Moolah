@@ -19,9 +19,10 @@ before_action :authenticated!, :current_user
       params.keys.each do |x|
         if x.to_i > 0
           User.find(x.to_i).goals << @goal
-          @current_user.goals << @goal
         end
       end
+      @current_user.goals << @goal
+
 
       redirect_to user_goal_path(current_user, @goal)
     else
