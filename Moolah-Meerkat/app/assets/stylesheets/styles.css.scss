@@ -1,6 +1,33 @@
- h2 {
-    color: gray;
+ div.mural {
+
+    margin-top: -3em;
+    background: url("http://www.jetblue.com/img/vacations/destination/Cancun-960-x-420.jpg");
+    background-repeat:no-repeat;
+    background-size: cover; 
+    background-position: absolute;
+    background-attachment: relative;
+    padding-bottom: 40px;
+} 
+
+ .well {
+    border: solid 2px gray;
+    opacity: 0.7;
+    margin-top: 20px;
+    margin-left: 120px;
+    margin-right: 120px;
  }
+
+ h2 {
+    padding-top: 80px;
+    color: #ffffff;
+    padding-bottom: 30px;
+ }
+
+h4 {
+    text-align: center;
+    padding-bottom: 20px;
+
+}
 
  .form {
     display: inline-block;
@@ -40,6 +67,19 @@
     -webkit-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
     -moz-box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.3);
+}
+
+.checkbox {
+   /* text-align: left;*/
+    margin-right: 100px;
+    margin-left: 120px;
+}
+
+.input_checkbox {
+    width: 8%;
+    height: 15px;
+    border-radius: 0px;
+    font-size: 7px;
 }
 
 .form_button {

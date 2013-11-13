@@ -1,14 +1,16 @@
 class User < ActiveRecord::Base
+  
+
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
   has_and_belongs_to_many :goals
   has_many :achievements
-  has_many :connections
   has_many :transactions, through: :goals
+  has_many :connections
   has_many :friends, :through => :connections
-  has_many :inverse_connections, :class_name => "Connection", :foreign_key => "friend_id"
-  has_many :inverse_friends, :through => :inverse_connections, :source => :user
-  has_many :transactions, :through => :goals
+
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
 
   def self.from_omniauth(auth)
     where(auth.slice(:provider, :uid)).first_or_initialize.tap do |user|
@@ -26,7 +28,7 @@ class User < ActiveRecord::Base
 
 
   def total_savings
-    self.transactions.inject(0) { |total, transaction| total + transaction }
+    self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
 
 

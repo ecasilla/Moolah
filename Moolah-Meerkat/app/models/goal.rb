@@ -3,17 +3,21 @@ class Goal < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	has_many :transactions
 
-  def balance(user_id)
+  include PublicActivity::Model
+  tracked owner: ->(controller, model) { controller && controller.current_user }
+
+  def balance(id)
     balance = 0
 
     self.transactions.each do |transaction|
-      if transaction.user.id == user_id
+      if transaction.user_id == id
         balance += transaction.amount
       end
     end
-
+    
     balance
   end
+
 
   def checkAchievement(user_id)
     user = User.find_by(user_id)
@@ -34,8 +38,13 @@ class Goal < ActiveRecord::Base
 
     @completetion = ((@amount/@famount)*100)
     return @completetion
-
-
   end
   
+
+  def transform_date
+    d = Date.parse(self.deadline.to_s)
+    return "#{Date::MONTHNAMES[d.mon]} #{d.mday}, #{d.year}"
+  end
+
+
 end

@@ -1,0 +1,25 @@
+<h2>Goal name: <%= @goal.name %></h2>
+<h2>Goal amount: $<%= @goal.final_amount %></h3>
+
+
+<div class="balance">Your current savings: $<%= @goal.balance(@current_user.id) %></div>  
+
+<!-- 1. post a new transaction -->
+<%= form_tag user_goal_transactions_path(@current_user, @goal), :action => :post, :html => {:class => 'form',:role => 'form'} do %>
+  <div class="form-group">
+    <%= text_field_tag :description, nil, {placeholder: "description", class: 'field'} %></br>
+  </div>
+
+  <div class="form-group">
+    <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
+  </div>
+
+    <%= submit_tag %>
+ <% end  %>    
+
+<!-- 2. run the balance method -->
+
+<ul>
+  <li>Description: <%= @goal.description %></li>
+  <li>Deadline: <%= @goal.transform_date %></li>
+</ul>
