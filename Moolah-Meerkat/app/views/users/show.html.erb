@@ -6,19 +6,25 @@
   <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post' %>
 <% end %>
 
-  <ul>
-    <% @user.goals.each do |goal| %>
-      <ul>
-        <li><%= goal.name %></li> 
-        <li><%= goal.description %> by <%= goal.deadline %></li>
-        <li><%= goal.balance(@user.id) %></li>
-      </ul>
-    <% end %>
-  </ul>
+<h3>News Feed</h3>
 
-  <h3><%= @user.first_name %>'s Friends</h3>
-  <ul>
-    <% @user.connections.each do |connection| %>
-      <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
-    <% end %>
-  </ul>
+<ul>
+  <%= render_activity(@all_activities)%>
+</ul>
+
+<ul>
+  <% @user.goals.each do |goal| %>
+    <ul>
+      <li><%= goal.name %></li> 
+      <li><%= goal.description %> by <%= goal.deadline %></li>
+      <li><%= goal.balance(@user.id) %></li>
+    </ul>
+  <% end %>
+</ul>
+
+<h3><%= @user.first_name %>'s Friends</h3>
+<ul>
+  <% @user.connections.each do |connection| %>
+    <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
+  <% end %>
+</ul>
