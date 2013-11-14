@@ -75,6 +75,14 @@
   return @completetion.abs
   end
 
+  def groupProgress
+    
+  end
+
+  def groupAchievements
+    
+  end
+
   def total_savings
     self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
