@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131114194410) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "achievements", force: true do |t|
     t.integer  "user_id"
     t.string   "name"
@@ -45,12 +48,10 @@ ActiveRecord::Schema.define(version: 20131114194410) do
   end
 
   create_table "goals", force: true do |t|
-    t.string   "name",         null: false
-    t.text     "description"
-    t.integer  "final_amount", null: false
-    t.date     "deadline"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.string  "name",         null: false
+    t.text    "description"
+    t.integer "final_amount", null: false
+    t.date    "deadline"
   end
 
   create_table "goals_users", force: true do |t|

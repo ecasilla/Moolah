@@ -52,7 +52,7 @@ before_action :authenticated!, :current_user
   private
 
   def goal_params
-    params.require(:goal).permit(:name, :description, :deadline, :final_amount)
+    params.require(:goal).permit(:name, :description, :photo_url, :deadline, :final_amount)
   end
 
 

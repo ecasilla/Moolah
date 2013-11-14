@@ -1,5 +1,6 @@
-<%= binding.pry %>
+
 <li class="activity">
-  <%= activity.owner.first_name %> 
-  <%= activity.owner.last_name %> Just Became Friends with 
-  <%= activity.owner.friends %>  </li>
+  <%= activity.trackable.user.first_name %> 
+  <%= activity.trackable.user.last_name %> Just Became Friends with 
+  <%= activity.trackable.friend.first_name %>  
+</li>
