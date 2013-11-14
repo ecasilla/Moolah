@@ -136,21 +136,38 @@ h4 {
 
   #draggable {
     border-radius: 100px;
+    margin-right: auto;
+    margin-left: auto;
   }
 
+   #draggable img {
+    margin-right: auto;
+    margin-left: auto;
+   }
+
   #droppable {
-    position: absolute;
-    width: 150px;
-    height: 150px;
+    width: 250px;
 /*    background: #ccc;*/
     margin-top: 40px;
     z-index: -1;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   #slider { 
     margin: 10px !important; 
 } 
 
+.pig {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+.coin {
+    margin-left: auto;
+    margin-right: auto;
+}
 /* ############ END DRAGGABLE ################## */
 
 
