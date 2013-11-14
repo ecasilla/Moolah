@@ -3,6 +3,7 @@ class Goal < ActiveRecord::Base
 	has_and_belongs_to_many :users
 	has_many :transactions
 
+
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller && controller.current_user }
 
@@ -17,7 +18,12 @@ class Goal < ActiveRecord::Base
     
     balance
   end
-  
+
+  def progress(user)
+    progress = (balance(user.id).to_f / self.final_amount) * 100
+    return "#{progress}%"
+  end
+
 
   def transform_date
     d = Date.parse(self.deadline.to_s)
