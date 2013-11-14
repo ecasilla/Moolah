@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   
-
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
   has_and_belongs_to_many :goals
@@ -25,26 +24,38 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-  
-  def checkAchievement(goal)
-    if user.achievements.length > 1
+
+  def createAchievement(goal,name)
+    @user_id = self.id
+    @name = name
+    @achievement = goal.find_by name:
+    @date = Date.current
+    achievement = Achievement.new(user_id: @user_id,goal_name: @achievement,name: @name,date: @date) 
+    
+    unless @achievement.nil?
+      achievement.save
     end
   end
 
   def setAchievement(goal)
     user_progress = progress(goal)
-    user_progress.to_i
-    case user_progress
+    binding.pry
+    case user_progress.to_i
      when 1...25
        return "You have not reached an achievement."
      when 25...50
-      return "achievement 25%"
+        badge25 = "penguin"
+      createAchievement(goal,badge25)
     when 50...75
-      return "achievement 50%"
+        badge50 = "meerkat"
+      createAchievement(goal,badge50)
     when 75...100
-        return "achievement 75%"
-      when 100
-        return "you are king"     
+      badge75 = "gorilla"
+      createAchievement(goal,badge75)
+    when 100..1000
+      binding.pry
+      badge100 = "yak"
+      createAchievement(goal,badge100)     
     end
   end
 
