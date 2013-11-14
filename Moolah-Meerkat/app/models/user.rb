@@ -32,6 +32,10 @@ class User < ActiveRecord::Base
     @date = Date.current
     achievement = Achievement.new(user_id: @user_id,goal_name: @achievement,name: @name,date: @date) 
     achievement.save
+    unless @achievement.nil?
+      achievement.save
+    end
+   achievements
   end
 
   def setAchievement(goal)
@@ -63,7 +67,7 @@ class User < ActiveRecord::Base
     @new_balance = @balance / @famount if @balance <= @famount
     if @balance > @famount
       return 
-    elsif @balance == 0
+    elsif @new_balance == 0
       return  
     else
     @completetion = @new_balance *100
