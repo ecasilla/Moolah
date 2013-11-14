@@ -1,6 +1,5 @@
 class User < ActiveRecord::Base
   
-
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
   has_and_belongs_to_many :goals
@@ -25,14 +24,22 @@ class User < ActiveRecord::Base
       user.save!
     end
   end
-  
-  def checkAchievement(goal)
-    if user.achievements.length > 1
+
+  def createAchievement(goal,name)
+    @user_id = self.id
+    @name = name
+    @achievement = goal.find_by name:
+    @date = Date.current
+    achievement = Achievement.new(user_id: @user_id,goal_name: @achievement,name: @name,date: @date) 
+    
+    unless @achievement.nil?
+      achievement.save
     end
   end
 
   def setAchievement(goal)
     user_progress = progress(goal)
+<<<<<<< HEAD
     case user_progress
      when user_progress <= 25
        return "You have not reach an achievement"
@@ -42,6 +49,25 @@ class User < ActiveRecord::Base
       #>50% <75% achievement 2 LIMIT TO 1
       #<100% >75% achievement 3 LIMIT TO 1
       # if == 100% achievement 4 LIMIT TO 1      
+=======
+    binding.pry
+    case user_progress.to_i
+     when 1...25
+       return "You have not reached an achievement."
+     when 25...50
+        badge25 = "penguin"
+      createAchievement(goal,badge25)
+    when 50...75
+        badge50 = "meerkat"
+      createAchievement(goal,badge50)
+    when 75...100
+      badge75 = "gorilla"
+      createAchievement(goal,badge75)
+    when 100..1000
+      binding.pry
+      badge100 = "yak"
+      createAchievement(goal,badge100)     
+>>>>>>> master
     end
   end
 
@@ -65,18 +91,5 @@ class User < ActiveRecord::Base
   def total_savings
     self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
-
-    # def achievementCalc(goal_id)
-  #   @goal = goal_id
-  #   @famount = @goal.final_amount
-  #   @transaction = @goal.transactions
-  #   @getamount = @transaction
-  #   @amount = total_savings.to_i
-  #   @famount = @famount.to_f
-  #   @completetion = @amount/@famount *100
-  #   @completetion = @completetion.to_i
-  #   progress(@completetion,goal_id)
-  # end
-
 
 end
