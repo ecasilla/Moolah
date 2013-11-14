@@ -13,5 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require jquery.ui.all
 //= require turbolinks
-//= require_tree .
+//= require js/bootstrap-slider.js
+//= require jquery.ui.widget
+
+window.onload = function() {
+  console.log("test!");
+
+
+ };
+
+

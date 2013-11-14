@@ -39,6 +39,17 @@ class User < ActiveRecord::Base
 
   def setAchievement(goal)
     user_progress = progress(goal)
+<<<<<<< HEAD
+    case user_progress
+     when user_progress <= 25
+       return "You have not reach an achievement"
+     when user_progress > 25
+      return "achievement 25%"
+      #>25% <50% achievement 1 LIMIT TO 1
+      #>50% <75% achievement 2 LIMIT TO 1
+      #<100% >75% achievement 3 LIMIT TO 1
+      # if == 100% achievement 4 LIMIT TO 1      
+=======
     binding.pry
     case user_progress.to_i
      when 1...25
@@ -56,6 +67,7 @@ class User < ActiveRecord::Base
       binding.pry
       badge100 = "yak"
       createAchievement(goal,badge100)     
+>>>>>>> master
     end
   end
 

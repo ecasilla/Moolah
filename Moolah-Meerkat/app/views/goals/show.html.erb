@@ -1,25 +1,69 @@
-<h2>Goal name: <%= @goal.name %></h2>
-<h2>Goal amount: $<%= @goal.final_amount %></h3>
+<div class="container">
+  <ul>
+    <li>Goal name: <%= @goal.name %></li>
+    <li>Goal amount: $<%= @goal.final_amount %></</li>
+    <li>Description: <%= @goal.description %></li>
+    <li>Deadline: <%= @goal.transform_date %></li>
+  </ul>  
+
+  <div class="balance">Your current savings: $<%= @goal.balance(@current_user.id) %>
+  </div> 
+
+  <img id="draggable" src="http://www.greatnorthernprepper.com/wp-content/uploads/2012/11/Canadian-Gold-Maple-Leaf-Coin.png" height="80" width="80">
+
+  <div id="slider"></div>
 
 
-<div class="balance">Your current savings: $<%= @goal.balance(@current_user.id) %></div>  
+  <div id="droppable">
+  <img alt="money-image" src="http://cminfo.ca/wp-content/uploads/2013/07/smart-piggy-bank.jpg" style="margin-top: 10px" width="250px" height="250px"/>
+  </div>
 
+
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Save some MOOLAH!</h4>
+        </div>
+        <div class="modal-body">
+            
+            <center>
+            <%= form_tag user_goal_transactions_path(@current_user, @goal), :action => :post, :html => {:class => 'form',:role => 'form'} do %>
+
+              <div class="form-transaction">
+                <%= text_field_tag :description, nil, {placeholder: "description", class: 'field'} %></br>
+              </div>
+
+              <div class="form-group">
+                 <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
+              </div>
+  
+
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <%= submit_tag nil, class: "btn btn-primary" %>
+          <% end %>
+        </center>
+<!--           <button type="button" class="btn btn-primary">Save changes</button>
+ -->        </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+      
 <!-- 1. post a new transaction -->
-<%= form_tag user_goal_transactions_path(@current_user, @goal), :action => :post, :html => {:class => 'form',:role => 'form'} do %>
-  <div class="form-group">
-    <%= text_field_tag :description, nil, {placeholder: "description", class: 'field'} %></br>
-  </div>
 
-  <div class="form-group">
-    <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
-  </div>
 
-    <%= submit_tag %>
- <% end  %>    
+</div>
 
-<!-- 2. run the balance method -->
 
-<ul>
-  <li>Description: <%= @goal.description %></li>
-  <li>Deadline: <%= @goal.transform_date %></li>
-</ul>
+
+
+
+
+
