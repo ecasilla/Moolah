@@ -2,6 +2,7 @@ class Goal < ActiveRecord::Base
 	validates :name, :final_amount, presence: true
 	has_and_belongs_to_many :users
 	has_many :transactions
+  has_many :achievements
 
 
   include PublicActivity::Model
@@ -24,6 +25,9 @@ class Goal < ActiveRecord::Base
     return "#{progress}%"
   end
 
+  def progress_as_float(user)
+    progress = (balance(user.id).to_f / self.final_amount) * 100
+  end
 
   def transform_date
     d = Date.parse(self.deadline.to_s)

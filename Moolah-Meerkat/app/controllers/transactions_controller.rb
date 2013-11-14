@@ -7,13 +7,15 @@ before_action :authenticated!, :current_user
 
   def create
     @user = current_user
-    @transaction = Transaction.new(user_id: params[:user_id], amount: params[:amount], description: params[:description])
     @goal = Goal.find(params[:goal_id])
+    @transaction = Transaction.new(user: @user, amount: params[:amount], description: params[:description], goal: @goal)
+
     if @transaction.save
-      @goal.transactions << @transaction
-      @user.setAchievement(@goal)
-    end  
-    redirect_to user_goal_path(@current_user, @goal)
+      @achievements = Achievement.where(user: @user, goal: @goal)
+      render json: [@transaction, @achievements]
+    else  
+      render nothing: true, status: 400
+    end
   end
 
   def show
