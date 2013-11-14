@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+  class User < ActiveRecord::Base
   
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
@@ -30,7 +30,7 @@ class User < ActiveRecord::Base
     @name = name
     @achievement = goal.name
     @date = Date.current
-    achievement = Achievement.new(user_id: @user_id,goal_name: @achievement,name: @name,date: @date) 
+    achievement = Achievement.new(user_id: @user_id,goal_name: @achievement,name: @name,date: @date)
     achievement_check = Achievement.where(user_id: self.id, name: name)
     # if achievement_check.name == name && achievement_check.user_id == self.id
     #   return 
@@ -42,9 +42,9 @@ class User < ActiveRecord::Base
   def setAchievement(goal)
     user_progress = progress(goal)
     case user_progress.to_i
-     when 1...25
-       return "You have not reached an achievement."
-     when 25...50
+    when 1...25
+      return "You have not reached an achievement."
+    when 25...50
         badge25 = "penguin"
       createAchievement(goal,badge25)
     when 50...75
@@ -55,7 +55,7 @@ class User < ActiveRecord::Base
       createAchievement(goal,badge75)
     when 100..1000
       badge100 = "yak"
-      createAchievement(goal,badge100)     
+      createAchievement(goal,badge100)    
     end
   end
 
@@ -68,12 +68,20 @@ class User < ActiveRecord::Base
     @new_balance = @balance / @famount if @balance <= @famount
     if @balance > @famount
       return 
-    elsif @balance == 0
+    elsif @new_balance == 0
       return  
     else
     @completetion = @new_balance *100
-   end
-   return @completetion.abs
+  end
+  return @completetion.abs
+  end
+
+  def groupProgress
+    
+  end
+
+  def groupAchievements
+    
   end
 
   def total_savings

@@ -15,6 +15,7 @@ gem 'bootstrap-sass', github: 'thomas-mcdonald/bootstrap-sass', branch: '3'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'public_activity'
+gem 'jquery-ui-sass-rails'
 
 group :doc do
   gem 'sdoc', require: false
