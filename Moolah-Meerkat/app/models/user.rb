@@ -28,33 +28,18 @@ class User < ActiveRecord::Base
   def createAchievement(goal,name)
     @user_id = self.id
     @name = name
-    @achievement = goal.find_by name:
+    @achievement = goal.name
     @date = Date.current
     achievement = Achievement.new(user_id: @user_id,goal_name: @achievement,name: @name,date: @date) 
-    
-    unless @achievement.nil?
-      achievement.save
-    end
+    achievement.save
   end
 
   def setAchievement(goal)
     user_progress = progress(goal)
-<<<<<<< HEAD
-    case user_progress
-     when user_progress <= 25
-       return "You have not reach an achievement"
-     when user_progress > 25
-      return "achievement 25%"
-      #>25% <50% achievement 1 LIMIT TO 1
-      #>50% <75% achievement 2 LIMIT TO 1
-      #<100% >75% achievement 3 LIMIT TO 1
-      # if == 100% achievement 4 LIMIT TO 1      
-=======
-    binding.pry
     case user_progress.to_i
-     when 1...25
-       return "You have not reached an achievement."
-     when 25...50
+    when 1...25
+      return "You have not reached an achievement."
+    when 25...50
         badge25 = "penguin"
       createAchievement(goal,badge25)
     when 50...75
@@ -64,10 +49,8 @@ class User < ActiveRecord::Base
       badge75 = "gorilla"
       createAchievement(goal,badge75)
     when 100..1000
-      binding.pry
       badge100 = "yak"
-      createAchievement(goal,badge100)     
->>>>>>> master
+      createAchievement(goal,badge100)    
     end
   end
 
@@ -84,8 +67,8 @@ class User < ActiveRecord::Base
       return  
     else
     @completetion = @new_balance *100
-   end
-   return @completetion.abs
+  end
+  return @completetion.abs
   end
 
   def total_savings
