@@ -37,6 +37,7 @@ class Goal < ActiveRecord::Base
       count +=1
     end
     return progress
+end
 
   def progress_as_float(user)
     progress = (balance(user.id).to_f / self.final_amount) * 100
@@ -47,6 +48,5 @@ class Goal < ActiveRecord::Base
     d = Date.parse(self.deadline.to_s)
     return "#{Date::MONTHNAMES[d.mon]} #{d.mday}, #{d.year}"
   end
-
 
 end
