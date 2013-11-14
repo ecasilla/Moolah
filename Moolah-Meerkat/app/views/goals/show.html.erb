@@ -1,6 +1,7 @@
 <div class="container">
   <ul>
     <li>Goal name: <%= @goal.name %></li>
+    <li><img src="<%= @goal.photo_url %>" width="150" alt="photos of goals"></li>
     <li>Your group's goal: $<%= @goal.final_amount %></</li>
     <li>Your goal: $<%= @goal.individual_final_amount %></li>
     <li>Description: <%= @goal.description %></li>
@@ -56,7 +57,7 @@
  <!-- GROUP PROGRESS BAR -->
 
 <div class="chart well">
-  <h2>Your group's progress so far:</h2>
+  <h2>Group's progress:</h2>
   <div class="progress">
   <% @goal.users.each do |user| %>
     <div class="progress-bar progress-bar-success stacked<%= user.id %>" style="width: <%=@goal.progress[user.id][:individuals_progress_for_goal] %>;background-color: <%= @goal.progress[user.id][:color] %>">

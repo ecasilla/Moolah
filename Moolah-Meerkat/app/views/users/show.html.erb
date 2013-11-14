@@ -1,10 +1,13 @@
+<div class="container">
 <img src=<%= @user.photo_url %>>
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<h2><%= @user.total_savings %></h2>
+<h2>Total Savings: $<%= @user.total_savings %></h2>
+
 
 <% if @current_user.id != @user.id %>
-  <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post' %>
+  <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary" %>
 <% end %>
+
 
   <ul>
     <% @user.goals.each do |goal| %>
@@ -20,5 +23,7 @@
   <ul>
     <% @user.connections.each do |connection| %>
       <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
+      <li><%= link_to connection.friend.first_name, user_path(connection.friend_id) %> <%= link_to connection.friend.last_name, user_path(connection.friend_id) %></li>
     <% end %>
   </ul>
+</div>
