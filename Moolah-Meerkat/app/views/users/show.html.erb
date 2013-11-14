@@ -1,3 +1,4 @@
+
 <div class="container">
 <img src=<%= @user.photo_url %>>
 <h1><%= @user.first_name %> <%= @user.last_name %></h1>
@@ -19,11 +20,52 @@
     <% end %>
   </ul>
 
-  <h3><%= @user.first_name %>'s Friends</h3>
+<div class="container-fluid">
+  
+<div class = "row user_info">
+  <img src=<%= @user.photo_url %>>
+  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+  <h2>Total Savings = <%= @user.total_savings %></h2>
+
+  <% if @current_user.id != @user.id %>
+    <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post' %>
+  <% end %>
+</div>
+
+<div>
+  <h3 class="feed">News Feed</h3>
+
+
   <ul>
+
     <% @user.connections.each do |connection| %>
       <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
       <li><%= link_to connection.friend.first_name, user_path(connection.friend_id) %> <%= link_to connection.friend.last_name, user_path(connection.friend_id) %></li>
     <% end %>
   </ul>
 </div>
+
+    <%= render_activity(@all_activities)%>
+  </ul>
+</div>
+
+
+<ul class="user_goals">
+  <% @user.goals.each do |goal| %>
+    <ul>
+      <li><%= goal.name %></li> 
+      <li><%= goal.description %> by <%= goal.deadline %></li>
+      <li><%= goal.balance(@user.id) %></li>
+    </ul>
+  <% end %>
+</ul>
+
+<h3><%= @user.first_name %>'s Friends</h3>
+<ul>
+  <% @user.connections.each do |connection| %>
+    <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
+  <% end %>
+</ul>
+
+</div><!-- container-div -->
+
