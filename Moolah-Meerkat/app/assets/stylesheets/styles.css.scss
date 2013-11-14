@@ -4,11 +4,7 @@
     border-radius: 0;
 }
 
-div#user_nav {
-    position: fixed;
-    top: 4em;
-    z-index: 999;
-}
+
  
  div.mural {
 
@@ -121,15 +117,6 @@ h4 {
     margin-top: 2px !important;
 }*/
 
-.navbar-form {
-    margin-top: 2px !important;
-    margin-bottom: 0px !important;
-}
-
-.navbar-form .btn {
-    position: relative !important;
-    bottom: 4.5px !important;
-}
 
 /* ############ START DRAGGABLE ################## */
 
@@ -178,6 +165,15 @@ h4 {
 
 }
 
+input.form-control {
+    width: 70% !important;
+}
+
+.nav-text a {
+    cursor: default !important;
+}
+
+#999999
 
 /* ############ END DRAGGABLE ################## */
 

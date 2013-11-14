@@ -30,18 +30,22 @@
       <li><a href="#">My Account</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-    </ul>
-         <div id="user_nav">
           <% if current_user %>
-            Signed in as <strong><%= current_user.first_name %></strong>!
-            <%= link_to "Sign out", signout_path, id: "sign_out" %>
+            <li class="nav-text"><a href="#">Welcome back <%= current_user.first_name %>!</a></li>
+            <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
           <% else %>
-            <%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %>
+            <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
           <% end %>
-        </div>
+    </ul>
+         
 
       <% flash.each do |name, msg| %>
         <%= content_tag :div, msg, id: "flash_#{name}" %>
       <% end %>
   </div><!-- /.navbar-collapse -->
 </nav> 
+
+
+
+
+
