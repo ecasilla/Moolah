@@ -107,6 +107,7 @@
 </div>
 
 <script>
+
    window.onload = function() {
 
        $( "#draggable" ).draggable();
@@ -133,7 +134,7 @@
           type: "POST",
           data: "transaction[" + $(this).serialize(),
           context: this,
-          success: function(){ updateProgress(addedAmount); }
+          success: function(){ updateProgress(addedAmount) }
         });
       });
     }
@@ -151,9 +152,9 @@
       $gProgress.css("width", gPercentage );
 
       var $bProgress = $(".bar<%= @current_user.id %>");
-      $bProgress("width", gPercentage);
+      $bProgress.css("width", gPercentage);
 
-
+      console.log("Hey i'm just savin with my frands");
       $('#myModal').modal('hide');
       $("input#amount").val(null);
       $("input#description").val(null);
