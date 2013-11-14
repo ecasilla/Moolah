@@ -69,6 +69,8 @@
 </div>
 
 <script>
+var currentJSONObject;
+
    window.onload = function() {
 
        $( "#draggable" ).draggable();
@@ -93,7 +95,7 @@
           type: "POST",
           data: "transaction[" + $(this).serialize(),
           context: this,
-          success: function(response){ console.log(response); updateProgress(addedAmount); }
+          success: function(response){ parseAchievements(response); updateProgress(addedAmount); }
         });
       });
     }
@@ -111,12 +113,18 @@
 
       var $balance = $('.balance');
       $balance.html(newSavings);
-      checkForAchievements(percentage);
     }
 
 
-    function checkForAchievements(percentage) {
-      console.log(percentage)
+    function parseAchievements(response) {
+    console.log(response)
+    var json_response = response
+    i = json_response[1].length - 1
+    var achievementName = json_response[1][i].name
+      var penguin = json_response[1][0].name
+      var meerkat = json_response[1][1].name
+      console.log(json_response[1][2].name)
+
     }
 
 

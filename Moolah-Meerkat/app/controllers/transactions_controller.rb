@@ -9,13 +9,21 @@ before_action :authenticated!, :current_user
     @user = current_user
     @goal = Goal.find(params[:goal_id])
     @transaction = Transaction.new(user: @user, amount: params[:amount], description: params[:description], goal: @goal)
+    @achievements = Achievement.where(user: @user, goal: @goal)
+    
 
-    if @transaction.save
-      @achievements = Achievement.where(user: @user, goal: @goal)
-      render json: [@transaction, @achievements]
-    else  
-      render nothing: true, status: 400
-    end
+     if @transaction.save
+      @currentAchievements = Achievement.where(user: @user, goal: @goal)
+      if @achievements != @currentAchievements
+         newachievement = true
+         render json: [@transaction, @currentAchievements, {achievement: newachievement}]
+      else
+        newachievement = false
+        render json: [@transaction, @currentAchievements, {achievement: newachievement}]
+      end
+     else  
+       render nothing: true
+     end
   end
 
   def show
