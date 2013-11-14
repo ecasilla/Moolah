@@ -12,20 +12,26 @@
     <%= debug current_user %>
     <!-- <div class="container"> -->
    
-
       <%= yield %>
       <%= render 'layouts/footer'%>
 
  <!-- ############# for droppable ############### -->     
 
-      <script>
-        $( "#draggable" ).draggable();
-        $( "#droppable" ).droppable({
-          drop: function() {
-            alert( "dropped" );
-          }
-        });
-      </script>
+  <script>
+     $( "#draggable" ).draggable();
+     $( "#droppable" ).droppable({
+       drop: function() {
+         $('#draggable').fadeOut(200);
+         $('#myModal').delay(400).modal('show');
+       }
+     });
+
+  </script>
+
+  <script>
+    window.onload = function() {
+ 
+  </script>
 
   
 

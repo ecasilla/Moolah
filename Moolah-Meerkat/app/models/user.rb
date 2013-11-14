@@ -33,7 +33,6 @@ class User < ActiveRecord::Base
 
   def setAchievement(goal)
     user_progress = progress(goal)
-        binding.pry
     case user_progress
      when user_progress <= 25
        return "You have not reach an achievement"

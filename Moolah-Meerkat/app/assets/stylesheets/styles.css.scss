@@ -70,7 +70,7 @@ h4 {
     text-align: center;
     }
 
-    input    {
+.field    {
     text-align: center;
     padding: 10px;
     border-radius: 10px;
@@ -90,7 +90,6 @@ h4 {
 }
 
 .form-transaction {
-    margin-top: 400px;
 }
 
 .checkbox {
@@ -104,6 +103,10 @@ h4 {
     height: 15px;
     border-radius: 0px;
     font-size: 7px;
+}
+
+.input_slider {
+
 }
 
 .form_button {
@@ -132,9 +135,7 @@ h4 {
 
 
   #draggable {
-    width: 100px;
-    height: 100px;
-    background: #ccc;
+    border-radius: 100px;
   }
 
   #droppable {
@@ -145,6 +146,10 @@ h4 {
     margin-top: 40px;
     z-index: -1;
   }
+
+  #slider { 
+    margin: 10px !important; 
+} 
 
 /* ############ END DRAGGABLE ################## */
 

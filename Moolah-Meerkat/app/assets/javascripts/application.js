@@ -15,18 +15,13 @@
 //= require bootstrap
 //= require jquery.ui.all
 //= require turbolinks
-//= require_tree .
+//= require js/bootstrap-slider.js
+//= require jquery.ui.widget
 
 window.onload = function() {
-console.log("Load!");
+  console.log("test!");
+
 
  };
 
-$( "#draggable" ).draggable();
-$( "#droppable" ).droppable({
-  drop: function() {
-    alert( "dropped" );
-  }
-});
 
-$('.slider').slider()
