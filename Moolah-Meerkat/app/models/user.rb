@@ -28,18 +28,19 @@ class User < ActiveRecord::Base
   def createAchievement(goal,name)
     @user_id = self.id
     @name = name
-    @achievement = goal.find_by name:
+    @achievement = goal.name
     @date = Date.current
     achievement = Achievement.new(user_id: @user_id,goal_name: @achievement,name: @name,date: @date) 
-    
-    unless @achievement.nil?
+    achievement_check = Achievement.where(user_id: self.id, name: name)
+    # if achievement_check.name == name && achievement_check.user_id == self.id
+    #   return 
+    # else
       achievement.save
-    end
+    # end
   end
 
   def setAchievement(goal)
     user_progress = progress(goal)
-    binding.pry
     case user_progress.to_i
      when 1...25
        return "You have not reached an achievement."
@@ -53,7 +54,6 @@ class User < ActiveRecord::Base
       badge75 = "gorilla"
       createAchievement(goal,badge75)
     when 100..1000
-      binding.pry
       badge100 = "yak"
       createAchievement(goal,badge100)     
     end
