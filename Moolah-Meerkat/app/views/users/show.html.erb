@@ -1,29 +1,32 @@
 <div class="container">
-<img src=<%= @user.photo_url %>>
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<h2>Total Savings: $<%= @user.total_savings %></h2>
+  <img src="<%= @user.photo_url %>">
+  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+  <h2>Total Savings: $<%= @user.total_savings %></h2>
 
 
-<% if @current_user.id != @user.id %>
-  <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary" %>
-<% end %>
+  <% if @current_user.id != @user.id %>
+    <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary" %>
+  <% end %>
 
+      <% @user.goals.each do |goal| %>
+        
+        <div class"tiles" style="background: url(<%= goal.photo_url %>);
+          ">
+        </div>
 
-  <ul>
-    <% @user.goals.each do |goal| %>
-      <ul>
-        <li><%= goal.name %></li> 
-        <li><%= goal.description %> by <%= goal.deadline %></li>
-        <li><%= goal.balance(@user.id) %></li>
-      </ul>
-    <% end %>
-  </ul>
+        <ul>
+          <li>Goal: <%= goal.name %></li> 
+          <li>Description: <%= goal.description %> by <%= goal.deadline %></li>
+          <li>Current savings: <%= goal.balance(@user.id) %></li>
+        </ul>
+      <% end %>
+   
 
-  <h3><%= @user.first_name %>'s Friends</h3>
-  <ul>
-    <% @user.connections.each do |connection| %>
-      <li><%= connection.friend.first_name %> <%= connection.friend.last_name %></li>
-      <li><%= link_to connection.friend.first_name, user_path(connection.friend_id) %> <%= link_to connection.friend.last_name, user_path(connection.friend_id) %></li>
-    <% end %>
-  </ul>
+    <h3><%= @user.first_name %>'s Friends</h3>
+    <ul>
+      <% @user.connections.each do |connection| %>
+        <li><%= link_to "#{connection.friend.first_name} #{connection.friend.last_name}", user_path(connection.friend_id) %></li>
+      <% end %>
+    </ul>
+    <div class="tiles"></div>
 </div>
