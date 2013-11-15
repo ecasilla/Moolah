@@ -9,15 +9,7 @@ class Goal < ActiveRecord::Base
 
   # logic for calculating total transaction amount
   def balance(id)
-    balance = 0
-
-    self.transactions.each do |transaction|
-      if transaction.user_id == id
-        balance += transaction.amount
-      end
-    end
-    
-    balance
+    self.transactions.where(user_id: id).sum(:amount)
   end
 
   # logic for an individual's goal within a group goal.
