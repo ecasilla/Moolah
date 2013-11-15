@@ -17,10 +17,14 @@
 
   <h2>Badges earned:</h2>
      <div class="well" style="background: none; border: none !important; position: relative !important; bottom: 40px;">
-        <% @user.achievements.each do |achievement| %>
-        <%= image_path achievement.name + ".gif" %>
 
-        <% end %>
+        <%= image_path 'penguin.gif' %>
+        <%= image_path 'meerkat.gif' %>
+                <%= image_path 'gorilla.gif' %>
+                        <%= image_path 'yak.gif' %>
+
+
+
       </div>
 
         <div style="width: 95%; border-bottom: dotted 2px gray; margin-bottom: 35px !important"></div>
