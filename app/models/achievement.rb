@@ -13,8 +13,6 @@ class Achievement < ActiveRecord::Base
   def set_achievement_name
   	progress = goal.progress_as_float(user)
 
-
-
     case progress.to_i
     when 1...25
       return 
