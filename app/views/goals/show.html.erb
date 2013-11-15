@@ -24,6 +24,7 @@
   </div>
   
   <!-- INDIVIDUAL PROGRESS BARS -->
+
   <div class="chart well">
     <h2>Your progress:</h2>
     <div class="progress">
@@ -67,7 +68,6 @@
 
 <% end %>
 
-
 <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -89,6 +89,7 @@
                 <div class="form-group">
                   <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
                 </div>
+    
 
           </div>
 
@@ -102,114 +103,10 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
-  <!-- Modal Penguin -->
-  <div class="modal fade" id="penguin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
-        </div>
-
-          <div class="modal-body">
-              
-            
-          <h1>IT WORKS!</h1>
-          <img class="aimage" src="<%= image_path 'penguin.gif' %>"/>
-
-          </div>
-      </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-<!-- Modal Meerkat -->
-
-  <div class="modal fade" id="meerkat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
-        </div>
-
-          <div class="modal-body">
-              
-            
-          <h1>IT WORKS!</h1>
-          <img class="aimage" src="<%= image_path 'meerkat.gif' %>"/>
-
-          </div>
-      </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-
-  <!-- Modal Gorilla -->
-
-    <div class="modal fade" id="gorilla" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
-        </div>
-
-          <div class="modal-body">
-              
-            
-          <h1>IT WORKS!</h1>
-          <img class="aimage" src="<%= image_path 'gorilla.gif' %>"/>
-
-          </div>
-      </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
-
-  <!-- Modal Yak -->
-
-    <div class="modal fade" id="yak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
-        </div>
-
-          <div class="modal-body">
-              
-            
-          <h1>IT WORKS!</h1>
-          <img class="aimage" src="<%= image_path 'yak.gif' %>"/>
-
-          </div>
-      </div>
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div><!-- /.modal -->
-
 
 </div>
 
 <script>
-
-
-
-   window.onload = function() {
-
-       $( "#draggable" ).draggable();
-       $( "#droppable" ).droppable({
-         drop: function() {
-           $('#draggable').fadeOut(200);
-           $('#myModal').delay(400).modal('show');
-         }
-       });
-
-var currentJSONObject;
-
   window.onload = function() {
 
       $( "#draggable" ).draggable();
@@ -236,15 +133,7 @@ var currentJSONObject;
           type: "POST",
           data: "transaction[" + $(this).serialize(),
           context: this,
-
-
-          success: function(){ updateProgress(addedAmount) }
-
-          success: function(response){ parseAchievements(response); updateProgress(addedAmount); }
-
-
           success: function(){ updateProgress(addedAmount); }
-
         });
       });
     }
@@ -277,46 +166,4 @@ var currentJSONObject;
 
 
 
-
-     function parseAchievements(response) {
-      
-      console.log(response)
-      
-      var json_response = response
-      var newAchievement = json_response[2]
-      var achievementStatus = newAchievement.achievement
-      console.log(achievementStatus)
-      
-      if (achievementStatus == true){
-        console.log(achievementStatus)
-        var i = json_response[1].length - 1
-        var achievementName = json_response[1][i].name
-        showModal(achievementName);
-      }
-      else{
-      return
-      }
-    }
-
-
-function showModal(achievementName){
-switch (achievementName) {
-  case "penguin":
-    $('#penguin').modal('show');
-    break;
-  case "meerkat":
-    $('#meerkat').modal('show');
-    break;
-  case "gorilla":
-    $('#gorilla').modal('show');
-    break;
-  case "yak":
-    $('#yak').modal('show');
-    break;
-  default:
-    break;
-}
-}
-
 </script>
-
