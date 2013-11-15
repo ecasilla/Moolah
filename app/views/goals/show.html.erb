@@ -69,7 +69,7 @@
 
 <% end %>
 
-<!-- Modal Transaction -->
+<!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -108,7 +108,7 @@
 </div>
 
 <script>
-var currentJSONObject;
+
    window.onload = function() {
 
        $( "#draggable" ).draggable();
@@ -135,10 +135,7 @@ var currentJSONObject;
           type: "POST",
           data: "transaction[" + $(this).serialize(),
           context: this,
-          success: function(response){ parseAchievements(response); updateProgress(addedAmount); }
           success: function(){ updateProgress(addedAmount) }
-          success: function(response){ console.log(response); updateProgress(addedAmount); }
-
         });
       });
     }
@@ -170,22 +167,8 @@ var currentJSONObject;
     }
 
 
-    function parseAchievements(response) {
-    console.log(response)
-    var json_response = response
-    i = json_response[1].length - 1
-    var achievementName = json_response[1][i].name
-      var penguin = json_response[1][0].name
-      var meerkat = json_response[1][1].name
-      console.log(json_response[1][2].name)
-
-    }
-
-
-
 
 </script>
-
 
 
 
