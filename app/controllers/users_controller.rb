@@ -4,7 +4,7 @@ before_action :authenticated!, :current_user
 
   def show
     @user = User.find(params[:id])
-    @all_activities = PublicActivity::Activity.order("created_at desc").all
+    @all_activities = PublicActivity::Activity.order("created_at desc").limit(15).all  
   end
 
   def destroy

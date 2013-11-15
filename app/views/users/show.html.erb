@@ -1,29 +1,39 @@
+<div class="mural" style="background-color: lightcyan !important"></div>
 <div class="container">
-  <img src="<%= @user.photo_url %>">
-  <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-  <h2>Total Savings: $<%= number_with_delimiter(@user.total_savings) %></h2>
+  
+  <span class="huh" style="margin-bottom: 40px !important;">
+    <img style="margin-top: 100px !important;display:inline" src="<%= @user.photo_url %>"> &nbsp &nbsp
+    <h1 style="display:inline;position:relative;top:60px;"><%= @user.first_name %> <%= @user.last_name %></h1>
+    <% if @current_user.id != @user.id %>
+      <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary frand" %>
+    <% end %>
+  </span>
+  <h2>Total Savings: <span class="label label-default" style="background-color: #FF4500 !important;">$<%= number_with_delimiter(@user.total_savings) %></span></h2>
+
+  <div style="width: 95%; border-bottom: dotted 2px gray; margin-bottom: 35px !important"></div>
 
 
-  <% if @current_user.id != @user.id %>
-    <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary" %>
-  <% end %>
+
 
   <h2>Badges earned:</h2>
-     <div class="well" style="width: 40%; margin: 0; background: none; border: none">
+     <div class="well" style="background: none; border: none !important; position: relative !important; bottom: 40px;">
         <% @user.achievements.each do |achievement| %>
         <img src="/assets/<%= achievement.name %>.gif" width="200">
         <% end %>
       </div>
 
+        <div style="width: 95%; border-bottom: dotted 2px gray; margin-bottom: 35px !important"></div>
+
+
 <% unless @user.goals.length == 0 %>
 
   <h2>Goals:</h2>  
 
-      <div class="well" style="width: 40% !important; margin: 0; margin-top: 50px !important">
+      <div class="well" style="margin-top: 20px !important">
+                <center>
+
       <% @user.goals.each do |goal| %>    
-
           <div class"tiles" style="background: url(<%= goal.photo_url %>); height: 200px; width: 200px; background-size: cover; display: inline-block !important">
-
           <ul class="lolwut" style="background-color: rgba(255, 255, 255, 0); height: 200px; width: 200px">
             <span class="wtf">
               <li><strong>Goal:</strong></li> 
@@ -40,18 +50,27 @@
 
         </div>
       <% end %>
+      </center>
 
     </div>
 
   <% end %>
 
-   <h1>News Feed</h1>
+          <div style="width: 95%; border-bottom: dotted 2px gray; margin-top: 80px !important;margin-bottom: 35px !important"></div>
 
-<ul>
+
+   <h2>News Feed</h2>
+
+
+<ul style="position:relative! important; left: 80px;">
   <%= render_activity(@all_activities)%>
 </ul>
 
-    <h3><%= @user.first_name %>'s Friends</h3>
+          <div style="width: 95%; border-bottom: dotted 2px gray; margin-top: 80px !important;margin-bottom: 35px !important"></div>
+
+
+
+    <h2><%= @user.first_name %>'s Friends</h2>
     <ul>
       <% @user.connections.each do |connection| %>
         <li><img src="<%= connection.friend.photo_url %>">   <%= link_to "#{connection.friend.first_name} #{connection.friend.last_name}", user_path(connection.friend_id) %></li>

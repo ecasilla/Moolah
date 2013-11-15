@@ -1,4 +1,4 @@
-  class User < ActiveRecord::Base
+class User < ActiveRecord::Base
   
   validates :first_name, :last_name, :email, presence: true
   validates :email, uniqueness: true
@@ -23,6 +23,22 @@
       user.oauth_expires_at = Time.at(auth.credentials.expires_at)
       user.save!
     end
+  end
+
+  def penguin
+    Achievement.where(user_id: id, name: "Meerkat").count 
+  end
+
+  def meerkat(user)
+  Achievement.where(user_id: id, name: "Meerkat").count    
+  end
+
+  def gorilla
+    Achievement.where(user_id: id, name: "Gorilla").count
+  end
+
+  def yak
+    Achievement.where(user_id: id, name: "Yak").count
   end
 
   def total_savings

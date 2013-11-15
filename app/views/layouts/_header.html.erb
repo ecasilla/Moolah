@@ -29,6 +29,15 @@
       <li class="active">#</li>
       <% if current_user %>
       <li><%= link_to "My Profile", user_path(@current_user.id) %></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Goals <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+          <% @current_user.goals.each do |goal| %>
+            <li><%= link_to goal.name, user_goal_path(@current_user.id, goal.id) %></li>
+          <% end %>
+        </ul>
+      </li>
+      <li><%= link_to 'New Goal', new_user_goal_path(@current_user.id) %></li>
       <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
