@@ -1,0 +1,282 @@
+<div class="container">
+  <ul>
+    <li>Goal name: <%= @goal.name %></li>
+    <li>Your group's goal: $<%= @goal.final_amount %></</li>
+    <li>Your goal: $<%= @goal.individual_final_amount %></li>
+    <li>Description: <%= @goal.description %></li>
+    <li>Deadline: <%= @goal.transform_date %></li>
+  </ul>  
+
+  <h3>Your current savings: <div class="balance">$<%= @goal.balance(@current_user.id) %></div>
+  </h3>
+  <p>Drag the coin into the piggy bank to start saving.</p>
+
+  <center>
+
+  <div class="coin">
+    <img id="draggable" src="http://www.greatnorthernprepper.com/wp-content/uploads/2012/11/Canadian-Gold-Maple-Leaf-Coin.png" height="80" width="80">
+  </div>
+
+</center>
+
+  <div id="droppable">
+    <img alt="money-image" class="pig" src="http://cminfo.ca/wp-content/uploads/2013/07/smart-piggy-bank.jpg" style="margin-top: 10px" width="250px" height="250px"/>
+  </div>
+  
+  <!-- INDIVIDUAL PROGRESS BARS -->
+
+  <div class="chart well">
+    <h2>Your progress:</h2>
+    <div class="progress">
+      <div class="progress-bar progress-bar-success individual" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= @goal.progress[@current_user.id][:individual_progress] %>;background-color: <%= @goal.progress[@current_user.id][:color] %>">
+        <span class="sr-only">40% Complete (success)</span>
+      </div>
+    </div>
+  </div>
+
+  <% if @goal.users.length > 1 %>
+
+
+  <!-- EACH FRIEND'S PROGRESS BARS -->
+
+  <div class="chart well">
+    <h2>Each member's progress:</h2>
+    <% @goal.users.each do |user| %>
+    <div class="progress">
+      &nbsp &nbsp <span class="display-name"><strong><%= user.first_name %></strong></span>
+      <div class="progress-bar progress-bar-success bar<%= user.id %>" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=@goal.progress[user.id][:individuals_progress_for_goal] %>;background-color: <%= @goal.progress[user.id][:color] %>">
+        <span class="sr-only"><%= user.first_name %></span>
+      </div>
+      
+    </div>
+    <% end %> 
+  </div>
+
+
+<!-- GROUP PROGRESS BAR -->
+
+<div class="chart well">
+  <h2>Your group's progress so far:</h2>
+  <div class="progress">
+  <% @goal.users.each do |user| %>
+    <div class="progress-bar progress-bar-success stacked<%= user.id %>" style="width: <%=@goal.progress[user.id][:individuals_progress_for_goal] %>;background-color: <%= @goal.progress[user.id][:color] %>">
+      <span class="sr-only">35% Complete (success)</span>
+    </div>
+  <% end %> 
+  </div>
+</div>
+
+<% end %>
+
+<!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">Save some MOOLAH!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+      <center>
+      <%= form_tag user_goal_transactions_path(@current_user, @goal), :action => :post, :html => {:class => 'form',:role => 'form'} do %>
+
+        <div class="form-transaction">
+          <%= text_field_tag :description, nil, {placeholder: "description", class: 'field'} %></br>
+        </div>
+
+        <div class="form-group">
+          <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
+        </div>
+    
+
+  </div>
+ <div class="modal-footer">
+      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      <%= submit_tag nil, class: "btn btn-primary" %>
+      <% end %>
+    </center>
+  </div>
+  </div><!-- /.modal-content -->
+</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+<!-- Modal Penguin -->
+  <div class="modal fade" id="penguin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+          <img class="aimage" src="<%= image_path 'penguin.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!-- Modal Meerkat -->
+
+  <div class="modal fade" id="meerkat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+          <img class="aimage" src="<%= image_path 'meerkat.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- Modal Gorilla -->
+
+    <div class="modal fade" id="gorilla" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+          <img class="aimage" src="<%= image_path 'gorilla.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- Modal Yak -->
+
+    <div class="modal fade" id="yak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+          <img class="aimage" src="<%= image_path 'yak.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+</div>
+
+<script>
+var oldAchievement = <%= @oldAchievement.length %>;
+
+window.onload = function() {
+
+$( "#draggable" ).draggable();
+$( "#droppable" ).droppable({
+  drop: function() {
+    $('#draggable').fadeOut(200);
+    $('#myModal').delay(400).modal('show');
+  }
+});
+
+addedAmount = 0;  
+
+bindForm();
+}
+
+function bindForm() {
+  $("form").on("submit", function(e) {
+    e.preventDefault();
+    var val = $("input#amount").val();
+    addedAmount += parseFloat(val);
+
+    $.ajax({
+      url: "<%= user_goal_transactions_path(@current_user, @goal) %>",
+      type: "POST",
+      data: "transaction[" + $(this).serialize(),
+      context: this,
+      success: function(response){ calcAchievements(response); updateProgress(addedAmount); }
+    });
+  });
+}
+
+function updateProgress(addedAmount) {
+  var newSavings = (addedAmount + <%= @goal.balance(@current_user.id) %>);
+  var iPercentage = ((newSavings / <%= @goal.individual_final_amount %> ) * 100) + "%";
+  var gPercentage = ((newSavings / <%= @goal.final_amount %> ) * 100) + "%";
+
+
+  var $iProgress = $('.individual');
+  $iProgress.css("width", iPercentage);
+
+  var $gProgress = $(".stacked<%= @current_user.id %>");
+  $gProgress.css("width", gPercentage );
+
+  var $bProgress = $(".bar<%= @current_user.id %>");
+  $bProgress.css("width", gPercentage);
+
+
+  $('#myModal').modal('hide');
+  $("input#amount").val(null);
+  $("input#description").val(null);
+  $('#draggable').fadeIn(200);
+  $('#draggable').css("top", "50px");
+
+  var $balance = $('.balance');
+  $balance.html(newSavings);
+
+}
+
+function calcAchievements(response){
+  var json_response = response;
+  var json_achievement = json_response[1].length;
+  var i = json_response[1].length - 1;
+    if (json_achievement >= 1) {
+      var achievementName = json_response[1][i].name;
+    }
+    else if (oldAchievement < json_achievement) {
+      showModal(achievementName);
+    }
+}
+
+function showModal(achievementName){
+  switch (achievementName) {
+    case "Penguin":
+      $('#penguin').modal('show');
+      break;
+    case "Meerkat":
+      $('#meerkat').modal('show');
+      break;
+    case "Gorilla":
+      $('#gorilla').modal('show');
+      break;
+    case "Yak":
+      $('#yak').modal('show');
+      break;
+    default:
+      break;
+    }
+  }
+
+
+</script>
