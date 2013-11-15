@@ -26,19 +26,19 @@ class User < ActiveRecord::Base
   end
 
   def penguin
-    self.Achievement.where(name: "Penguin").count 
+    Achievement.where(user_id: id, name: "Penguin").count 
   end
 
   def meerkat
-    self.Achievement.where(name: "Meerkat").count    
+  Achievement.where(user_id: id, name: "Meerkat").count    
   end
 
   def gorilla
-    self.Achievement.where(name: "Gorilla").count
+    Achievement.where(user_id: id, name: "Gorilla").count
   end
 
   def yak
-    self.Achievement.where(name: "Yak").count
+    Achievement.where(user_id: id, name: "Yak").count
   end
 
   def total_savings
