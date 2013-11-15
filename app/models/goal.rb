@@ -25,6 +25,11 @@ class Goal < ActiveRecord::Base
     self.final_amount / self.users.length
   end
 
+  # this has to do with achievements
+  def progress_as_float(user)
+    progress = (balance(user.id).to_f / self.final_amount) * 100
+  end
+
   def progress
     colors = ["red", "blue", "orange", "pink", "yellow", "brown", "purple", "darkgoldenrod", "green", "beige"]
     count = 0

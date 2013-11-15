@@ -3,7 +3,7 @@ development:
   encoding: unicode
   database: moolah_development
   pool: 5
-  username: ecasilla
+  username: Paris
   password:
   host: 'localhost'
 

@@ -34,6 +34,7 @@ before_action :authenticated!, :current_user
   def show
     @user = User.find(params[:user_id])
     @goal = @user.goals.find(params[:id])
+    # binding.pry
   end
 
   def index
