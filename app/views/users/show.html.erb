@@ -1,30 +1,59 @@
 <div class="container">
   <img src="<%= @user.photo_url %>">
   <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-  <h2>Total Savings: $<%= @user.total_savings %></h2>
+  <h2>Total Savings: $<%= number_with_delimiter(@user.total_savings) %></h2>
 
 
   <% if @current_user.id != @user.id %>
     <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary" %>
   <% end %>
 
-      <% @user.goals.each do |goal| %>    
-      <li><img src="<%= goal.photo_url %>", width="150"></li> 
-        <!-- <div class"tiles" style="background: url(<%= goal.photo_url %>)">
-        </div> -->
+  <h2>Badges earned:</h2>
+     <div class="well" style="width: 40%; margin: 0; background: none; border: none">
+        <% @user.achievements.each do |achievement| %>
+        <img src="/assets/<%= achievement.name %>.gif" width="200">
+        <% end %>
+      </div>
 
-        <ul>
-          <li>Goal: <%= goal.name %></li> 
-          <li>Description: <%= goal.description %> by <%= goal.deadline %></li>
-          <li>Current savings: <%= goal.balance(@user.id) %></li>
-        </ul>
+<% unless @user.goals.length == 0 %>
+
+  <h2>Goals:</h2>  
+
+      <div class="well" style="width: 40% !important; margin: 0; margin-top: 50px !important">
+      <% @user.goals.each do |goal| %>    
+
+          <div class"tiles" style="background: url(<%= goal.photo_url %>); height: 200px; width: 200px; background-size: cover; display: inline-block !important">
+
+          <ul class="lolwut" style="background-color: rgba(255, 255, 255, 0); height: 200px; width: 200px">
+            <span class="wtf">
+              <li><strong>Goal:</strong></li> 
+              <li><%= goal.name %></li>
+              <br/> 
+              <li><strong>Description:</strong></li>
+              <li><%= goal.description %></li>
+              <li>by <%= goal.deadline %></li>
+              <br/>
+              <li><strong>Current savings:</strong></li> 
+              <li>$<%= goal.balance(@user.id) %></li>
+            </span>
+          </ul>
+
+        </div>
       <% end %>
-   
+    </div>
+
+  <% end %>
+
+   <h1>News Feed</h1>
+
+<ul>
+  <%= render_activity(@all_activities)%>
+</ul>
 
     <h3><%= @user.first_name %>'s Friends</h3>
     <ul>
       <% @user.connections.each do |connection| %>
-        <li><%= link_to "#{connection.friend.first_name} #{connection.friend.last_name}", user_path(connection.friend_id) %></li>
+        <li><img src="<%= connection.friend.photo_url %>">   <%= link_to "#{connection.friend.first_name} #{connection.friend.last_name}", user_path(connection.friend_id) %></li>
       <% end %>
     </ul>
     <div class="tiles"></div>

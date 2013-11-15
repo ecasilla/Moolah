@@ -207,11 +207,35 @@ input.form-control {
 }
 
 .nav-text a:hover {
-    color: #999999   !important;
+    color: #999999 !important;
 }
 
+.lolwut {
+    color: rgba(0, 0, 0, 0) !important
+}
 
+.lolwut:hover {
+    background-color: rgba(255, 255, 255, 0.6) !important;
+    color: rgba(0, 0, 0, 1) !important;
+}
 
+.wtf {
+    position: relative !important;
+    top: 10px;
+    right: 15px !important;
+}
+
+.achievements {
+    margin-bottom: 20px !important;
+}
+
+h4 {
+    color: #ffffff;
+}
+
+.display-name {
+    color: green;
+}
 
 
 
