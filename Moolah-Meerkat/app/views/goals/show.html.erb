@@ -65,6 +65,27 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
+<!-- Modal Transaction -->
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'gorilla.gif' %>"/>
+
+          </div>
+       </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 
 </div>
 
@@ -80,7 +101,6 @@ var currentJSONObject;
            $('#myModal').delay(400).modal('show');
          }
        });
-
       bindForm();
     }
 
@@ -117,16 +137,34 @@ var currentJSONObject;
 
 
     function parseAchievements(response) {
-    console.log(response)
-    var json_response = response
-    i = json_response[1].length - 1
-    var achievementName = json_response[1][i].name
-      var penguin = json_response[1][0].name
-      var meerkat = json_response[1][1].name
-      console.log(json_response[1][2].name)
-
+      
+      console.log(response)
+      
+      var json_response = response
+      var newAchievement = json_response[2]
+      var achievementStatus = newAchievement.achievement
+       var displayModal = document.getElementsByClassName("aimage")
+       displayModal.innerHTML = "yes"
+        console.log(displayModal)
+      console.log(achievementStatus )
+      
+      if (achievementStatus == true){
+        console.log(achievementStatus)
+        var i = json_response[1].length - 1
+        var achievementName = json_response[1][i].name
+        var displayModal = document.getElementsByClassName("aimage")
+        console.log(displayModal)
+        showModal();
+      }else{
+        showModal();
+      }
     }
 
+function showModal(){
+  console.log('MODAL!');
+  console.log($("#myModal2"));
+  $("#myModal2").modal("show");
+}
 
 
 
