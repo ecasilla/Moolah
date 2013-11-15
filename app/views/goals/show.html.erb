@@ -103,10 +103,100 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
+<!-- Modal Penguin -->
+  <div class="modal fade" id="penguin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'Penguin.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!-- Modal Meerkat -->
+
+  <div class="modal fade" id="meerkat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'Meerkat.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- Modal Gorilla -->
+
+    <div class="modal fade" id="gorilla" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'Gorilla.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- Modal Yak -->
+
+    <div class="modal fade" id="yak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'Yak.gif' %>"/>
+
+          </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
 
 </div>
 
 <script>
+  var oldAchievement = <%= @oldAchievement.length %>;
+
   window.onload = function() {
 
       $( "#draggable" ).draggable();
@@ -133,7 +223,7 @@
           type: "POST",
           data: "transaction[" + $(this).serialize(),
           context: this,
-          success: function(){ updateProgress(addedAmount); }
+          success: function(response){ calcAchievements(response); updateProgress(addedAmount); }
         });
       });
     }
@@ -162,6 +252,41 @@
 
       var $balance = $('.balance');
       $balance.html(newSavings);
+    }
+
+    function calcAchievements(response){
+      var json_response = response;
+      console.log(json_response);
+      var json_achievement = json_response[1].length
+      var i = json_response[1].length - 1
+      if (json_achievement >= 1) {
+        var achievementName = json_response[1][i].name
+        console.log(achievementName);
+
+        if (oldAchievement < json_achievement) {
+          showModal(achievementName);
+        }
+      }
+
+    }
+
+    function showModal(achievementName){
+    switch (achievementName) {
+      case "Penguin":
+        $('#penguin').modal('show');
+        break;
+      case "Meerkat":
+        $('#meerkat').modal('show');
+        break;
+      case "Gorilla":
+        $('#gorilla').modal('show');
+        break;
+      case "Yak":
+        $('#yak').modal('show');
+        break;
+      default:
+        break;
+      }
     }
 
 

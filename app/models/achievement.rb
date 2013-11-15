@@ -13,17 +13,19 @@ class Achievement < ActiveRecord::Base
   def set_achievement_name
   	progress = goal.progress_as_float(user)
 
+
+
     case progress.to_i
     when 1...25
       return 
     when 25...50
-      self.name = "penguin"
+      self.name = "Penguin"
     when 50...75
-      self.name = "meerkat"
+      self.name = "Meerkat"
     when 75...100
-      self.name = "gorilla"
+      self.name = "Gorilla"
     when 100..1000
-      self.name = "yak"
+      self.name = "Yak"
     end
   end
 end

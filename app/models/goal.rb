@@ -27,7 +27,7 @@ class Goal < ActiveRecord::Base
 
   # this has to do with achievements
   def progress_as_float(user)
-    progress = (balance(user.id).to_f / self.final_amount) * 100
+    progress = (balance(user.id).to_f / (self.final_amount / self.users.length)) * 100
   end
 
   def progress

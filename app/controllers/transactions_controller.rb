@@ -18,9 +18,9 @@ before_action :authenticated!, :current_user
 
   
       if @achievements.length != @currentAchievements.length
-        render json: [@transaction, @currentAchievements, {achievement: true}]
-      else
         render json: [@transaction, @currentAchievements, {achievement: false}]
+      else
+        render json: [@transaction, @currentAchievements, {achievement: true}]
       end
     
   end
