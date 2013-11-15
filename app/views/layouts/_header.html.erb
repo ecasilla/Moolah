@@ -27,7 +27,9 @@
 
     <ul class="nav navbar-nav">
       <li class="active">#</li>
-      <li>My Account</li>
+      <% if current_user %>
+      <li><%= link_to "My Profile", user_path(@current_user.id) %></li>
+      <% end %>
     </ul>
     <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
