@@ -26,14 +26,15 @@
   </div>
 
   <h4>Add your friends to this goal:</h4>
-    <% @current_user.friends.each do |friend| %>
- <div class="checkbox" style="text-align: left !important; position: relative !important; left: 250px">
-   <label>
-     <%= "#{friend.first_name} #{friend.last_name}" %> 
-     <input type="checkbox" class="input_checkbox" name="<%= friend.id %>" value="blah" style="display:block" style="position: relative !important; left: 80px">
-   </label>
-  <% end %>
-</div>
+      <% @current_user.friends.each do |friend| %>
+   <div class="checkbox" style="text-align: left !important; position: relative !important; left: 250px">
+     <label>
+       <%= "#{friend.first_name} #{friend.last_name}" %> 
+       <input type="checkbox" class="input_checkbox" name="<%= friend.id %>" value="blah" style="display:block" style="position: relative !important; left: 80px">
+     </label>
+    </div>
+    <% end %>
+  
 
  <br>
  <br>
