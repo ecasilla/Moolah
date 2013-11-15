@@ -1,12 +1,14 @@
 <div class="container">
-  <ul>
+
+
+  <ul class="info">
     <li>Goal name: <%= @goal.name %></li>
     <li>Your group's goal: $<%= @goal.final_amount %></</li>
     <li>Your goal: $<%= @goal.individual_final_amount %></li>
     <li>Description: <%= @goal.description %></li>
     <li>Deadline: <%= @goal.transform_date %></li>
   </ul>  
-
+   
   <h3>Your current savings: <div class="balance">$<%= @goal.balance(@current_user.id) %></div>
   </h3>
   <p>Drag the coin into the piggy bank to start saving.</p>
@@ -106,7 +108,7 @@
 <!-- Modal Penguin -->
   <div class="modal fade" id="penguin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: rgba(0, 0, 0, 0) !important">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
@@ -114,10 +116,10 @@
 
           <div class="modal-body">
               
-            
-          <h1>IT WORKS!</h1>
+          <center>
+          <h2 style="background-color: white !important">IT'S TIME FOR A FIESTA! You've reached a financial goal. You are now a:</h2>
           <img class="aimage" src="<%= image_path 'Penguin.gif' %>"/>
-
+          </center>
           </div>
       </div>
       </div><!-- /.modal-content -->
@@ -128,7 +130,7 @@
 
   <div class="modal fade" id="meerkat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: rgba(0, 0, 0, 0) !important">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
@@ -136,10 +138,10 @@
 
           <div class="modal-body">
               
-            
-          <h1>IT WORKS!</h1>
+          <center>
+          <h2 style="background-color: white !important">MOOLAH MOOLAH MOOLAH! You've reached a financial goal. You are now a:</h2>
           <img class="aimage" src="<%= image_path 'Meerkat.gif' %>"/>
-
+          </center>
           </div>
       </div>
       </div><!-- /.modal-content -->
@@ -151,7 +153,7 @@
 
     <div class="modal fade" id="gorilla" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-      <div class="modal-content">
+      <div class="modal-content" style="background-color: rgba(0, 0, 0, 0) !important">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
           <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
@@ -159,10 +161,10 @@
 
           <div class="modal-body">
               
-            
-          <h1>IT WORKS!</h1>
+          <center>
+          <h2 style="background-color: white !important">BANANA-RAMA! You've just reached another goal! You are now a:</h2>
           <img class="aimage" src="<%= image_path 'Gorilla.gif' %>"/>
-
+          </center>
           </div>
       </div>
       </div><!-- /.modal-content -->
@@ -183,7 +185,7 @@
           <div class="modal-body">
               
           <center>
-          <h2>COINCHIWA! You've just reached your goal. You are now a:</h2>
+          <h2 style="background-color: white !important">COIN-ICHIWA! You've just reached your goal. You are now a:</h2>
           <img class="aimage" src="<%= image_path 'Yak.gif' %>"/>
         </center>
 
