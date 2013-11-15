@@ -8,11 +8,10 @@
     <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary" %>
   <% end %>
 
-      <% @user.goals.each do |goal| %>
-        
-        <div class"tiles" style="background: url(<%= goal.photo_url %>);
-          ">
-        </div>
+      <% @user.goals.each do |goal| %>    
+      <li><img src="<%= goal.photo_url %>", width="150"></li> 
+        <!-- <div class"tiles" style="background: url(<%= goal.photo_url %>)">
+        </div> -->
 
         <ul>
           <li>Goal: <%= goal.name %></li> 
