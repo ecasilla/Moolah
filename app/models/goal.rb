@@ -1,5 +1,5 @@
 class Goal < ActiveRecord::Base
-  validates :name, :final_amount, presence: true
+  validates :name, :final_amount, :deadline, presence: true
   has_and_belongs_to_many :users
   has_many :transactions
 
