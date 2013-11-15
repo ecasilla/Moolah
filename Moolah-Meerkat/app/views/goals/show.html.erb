@@ -65,8 +65,53 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
-<!-- Modal Transaction -->
-  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<!-- Modal Penguin -->
+  <div class="modal fade" id="penguin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'penguin.gif' %>"/>
+
+          </div>
+       </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!-- Modal Meerkat -->
+
+  <div class="modal fade" id="meerkat" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'meerkat.gif' %>"/>
+
+          </div>
+       </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+
+  <!-- Modal Gorilla -->
+
+    <div class="modal fade" id="gorilla" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -87,13 +132,33 @@
   </div><!-- /.modal -->
 
 
+  <!-- Modal Yak -->
+
+    <div class="modal fade" id="yak" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'yak.gif' %>"/>
+
+          </div>
+       </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
 </div>
 
 <script>
-var currentJSONObject;
-
+var oldAchievement = <%= @oldAchievement.length %>
    window.onload = function() {
-
        $( "#draggable" ).draggable();
        $( "#droppable" ).droppable({
          drop: function() {
@@ -115,7 +180,7 @@ var currentJSONObject;
           type: "POST",
           data: "transaction[" + $(this).serialize(),
           context: this,
-          success: function(response){ parseAchievements(response); updateProgress(addedAmount); }
+          success: function(response){ calcAchievements(response); updateProgress(addedAmount); }
         });
       });
     }
@@ -135,38 +200,37 @@ var currentJSONObject;
       $balance.html(newSavings);
     }
 
-
-    function parseAchievements(response) {
-      
-      console.log(response)
-      
-      var json_response = response
-      var newAchievement = json_response[2]
-      var achievementStatus = newAchievement.achievement
-       var displayModal = document.getElementsByClassName("aimage")
-       displayModal.innerHTML = "yes"
-        console.log(displayModal)
-      console.log(achievementStatus )
-      
-      if (achievementStatus == true){
-        console.log(achievementStatus)
-        var i = json_response[1].length - 1
+    function calcAchievements(response){
+      var json_response = response;
+      var json_achievement = json_response[1].length
+      var i = json_response[1].length - 1
+      if (json_achievement >= 1) {
         var achievementName = json_response[1][i].name
-        var displayModal = document.getElementsByClassName("aimage")
-        console.log(displayModal)
-        showModal();
-      }else{
-        showModal();
+        if (oldAchievement < json_achievement) {
+          showModal(achievementName);
+        }
       }
+
     }
 
-function showModal(){
-  console.log('MODAL!');
-  console.log($("#myModal2"));
-  $("#myModal2").modal("show");
-}
-
-
+    function showModal(achievementName){
+    switch (achievementName) {
+      case "Penguin":
+        $('#penguin').modal('show');
+        break;
+      case "Meerkat":
+        $('#meerkat').modal('show');
+        break;
+      case "Gorilla":
+        $('#gorilla').modal('show');
+        break;
+      case "Yak":
+        $('#yak').modal('show');
+        break;
+      default:
+        break;
+      }
+    }
 
 </script>
 
