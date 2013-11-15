@@ -25,6 +25,22 @@
     end
   end
 
+  def penguin
+    Achievement.where(user_id: id, name: "Meerkat").count 
+  end
+
+  def meerkat(user)
+  Achievement.where(user_id: id, name: "Meerkat").count    
+  end
+
+  def gorilla
+    Achievement.where(user_id: id, name: "Gorilla").count
+  end
+
+  def yak
+    Achievement.where(user_id: id, name: "Yak").count
+  end
+
   def total_savings
     self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
