@@ -30,7 +30,7 @@ class Goal < ActiveRecord::Base
     progress = (balance(user.id).to_f / self.final_amount) * 100
   end
 
-  def progress
+  def progress(user)
     colors = ["red", "blue", "orange", "pink", "yellow", "brown", "purple", "darkgoldenrod", "green", "beige"]
     count = 0
     progress = {}
