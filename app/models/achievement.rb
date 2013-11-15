@@ -8,6 +8,22 @@ class Achievement < ActiveRecord::Base
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller && controller.current_user }
 
+  def self.penguin
+    where(name: "Penguin")
+  end
+  
+  def self.meekat
+    where(name: "Meerkat")
+  end
+  
+  def self.gorilla
+    where(name: "Gorilla")
+  end
+    
+  def self.yak
+    where(name: "Yak")
+  end
+
   private
 
   def set_achievement_name
