@@ -211,60 +211,60 @@
 
 window.onload = function() {
 
-    $( "#draggable" ).draggable();
-    $( "#droppable" ).droppable({
-      drop: function() {
-        $('#draggable').fadeOut(200);
-        $('#myModal').delay(400).modal('show');
-      }
+  $( "#draggable" ).draggable();
+  $( "#droppable" ).droppable({
+    drop: function() {
+      $('#draggable').fadeOut(200);
+      $('#myModal').delay(400).modal('show');
+    }
+  });
+
+  addedAmount = 0;
+
+  bindForm();
+}
+
+function bindForm() {
+  $("form").on("submit", function(e) {
+    e.preventDefault();
+    var val = $("input#amount").val();
+    addedAmount += parseFloat(val);
+
+    $.ajax({
+      url: "<%= user_goal_transactions_path(@current_user, @goal) %>",
+      type: "POST",
+      data: "transaction[" + $(this).serialize(),
+      context: this,
+      success: function(){ updateProgress(addedAmount); }
     });
+  });
+}
 
-    addedAmount = 0;
-
-    bindForm();
-  }
-
-  function bindForm() {
-    $("form").on("submit", function(e) {
-      e.preventDefault();
-      var val = $("input#amount").val();
-      addedAmount += parseFloat(val);
-
-      $.ajax({
-        url: "<%= user_goal_transactions_path(@current_user, @goal) %>",
-        type: "POST",
-        data: "transaction[" + $(this).serialize(),
-        context: this,
-        success: function(){ updateProgress(addedAmount); }
-      });
-    });
-  }
-
-  function updateProgress(addedAmount) {
-    var newSavings = (addedAmount + <%= @goal.balance(@current_user.id) %>);
-    var iPercentage = ((newSavings / <%= @goal.individual_final_amount %> ) * 100) + "%";
-    var gPercentage = ((newSavings / <%= @goal.final_amount %> ) * 100) + "%";
+function updateProgress(addedAmount) {
+  var newSavings = (addedAmount + <%= @goal.balance(@current_user.id) %>);
+  var iPercentage = ((newSavings / <%= @goal.individual_final_amount %> ) * 100) + "%";
+  var gPercentage = ((newSavings / <%= @goal.final_amount %> ) * 100) + "%";
 
 
-    var $iProgress = $('.individual');
-    $iProgress.css("width", iPercentage);
+  var $iProgress = $('.individual');
+  $iProgress.css("width", iPercentage);
 
-    var $gProgress = $(".stacked<%= @current_user.id %>");
-    $gProgress.css("width", gPercentage );
+  var $gProgress = $(".stacked<%= @current_user.id %>");
+  $gProgress.css("width", gPercentage );
 
-    var $bProgress = $(".bar<%= @current_user.id %>");
-    $bProgress("width", gPercentage);
+  var $bProgress = $(".bar<%= @current_user.id %>");
+  $bProgress("width", gPercentage);
 
 
-    $('#myModal').modal('hide');
-    $("input#amount").val(null);
-    $("input#description").val(null);
-    $('#draggable').fadeIn(200);
-    $('#draggable').css("top", "50px");
+  $('#myModal').modal('hide');
+  $("input#amount").val(null);
+  $("input#description").val(null);
+  $('#draggable').fadeIn(200);
+  $('#draggable').css("top", "50px");
 
-    var $balance = $('.balance');
-    $balance.html(newSavings);
-  }
+  var $balance = $('.balance');
+  $balance.html(newSavings);
+}
 
 
 var oldAchievement = <%= @oldAchievement.length %>;
