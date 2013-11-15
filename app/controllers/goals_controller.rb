@@ -9,7 +9,6 @@ before_action :authenticated!, :current_user
   end
 
   def create
-   
     @goal = Goal.new(goal_params)
     # add new goal to the current user
     if @goal.save
@@ -25,16 +24,12 @@ before_action :authenticated!, :current_user
       redirect_to new_user_goal_path(current_user)
     end
     
-   # for adding connections to group goal
-   # @connections = User.connections.all
-   # add user's friends to new goal
-   # @goal.users << params[:friend_id]
   end
 
   def show
     @user = User.find(params[:user_id])
     @goal = @user.goals.find(params[:id])
-    # binding.pry
+    @oldAchievement = Achievement.where(user: @user, goal: @goal)
   end
 
   def index
