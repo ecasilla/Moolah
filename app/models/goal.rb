@@ -27,7 +27,7 @@ class Goal < ActiveRecord::Base
   end
 
 
-  def progress(user)
+  def progress
     colors = ["red", "blue", "orange", "pink", "yellow", "brown", "purple", "darkgoldenrod", "green", "beige"]
     count = 0
     progress = {}

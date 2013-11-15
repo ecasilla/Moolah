@@ -31,7 +31,7 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
           <% if current_user %>
-            <li class="nav-text"><a href="#">Welcome back <%= current_user.first_name %>!</a></li>
+            <li class="nav-text"><a href="#">Welcome back <%= current_user.first_name %>! <img src="<%= current_user.photo_url %>"> </a></li>
             <li><%= link_to "Sign out", signout_path, id: "sign_out" %></li>
           <% else %>
             <li><%= link_to "Sign in with Facebook", "/auth/facebook", id: "sign_in" %></li>
