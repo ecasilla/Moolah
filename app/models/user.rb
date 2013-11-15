@@ -29,7 +29,7 @@ class User < ActiveRecord::Base
     Achievement.where(user_id: id, name: "Meerkat").count 
   end
 
-  def meerkat(user)
+  def meerkat
   Achievement.where(user_id: id, name: "Meerkat").count    
   end
 

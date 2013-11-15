@@ -17,15 +17,28 @@
 
   <h2>Badges earned:</h2>
      <div class="well" style="background: none; border: none !important; position: relative !important; bottom: 40px;">
-
-        <img src="<%= image_path 'Penguin.gif' %> " width= "200">
-        <img src="<%= image_path 'Meerkat.gif' %>"width= "200">
-                <img src="<%= image_path 'Gorilla.gif' %>"width= "200">
-                       <img src="<%= image_path 'Yak.gif' %>" alt=""width= "200"> 
-
-
+ <div style="float:left;">
+   
+   <img src="<%= image_path 'Penguin.gif' %> " width= "200">
+   <p><%= @current_user.penguin %> </p>
+ </div>
+       <div style="float:left";>
+         <img src="<%= image_path 'Meerkat.gif' %>"width= "200">
+         <p><%= @current_user.meerkat %></p> 
+       </div> 
+        <div style="float:left";>
+          <img src="<%= image_path 'Gorilla.gif' %>"width= "200">
+          <p><%= @current_user.gorilla %></p> 
+        </div>
+          
+          <div>
+          <img src="<%= image_path 'Yak.gif' %>" alt=""width= "200"> 
+          <p><%= @current_user.yak %></p>  
+          </div>    
+            
 
       </div>
+
 
         <div style="width: 95%; border-bottom: dotted 2px gray; margin-bottom: 35px !important"></div>
 
