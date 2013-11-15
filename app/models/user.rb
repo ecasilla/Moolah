@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   end
 
   def penguin
-    Achievement.where(user_id: id, name: "Meerkat").count 
+    Achievement.where(user_id: id, name: "Penguin").count 
   end
 
   def meerkat
