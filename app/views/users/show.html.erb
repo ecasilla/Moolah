@@ -19,7 +19,11 @@
           <li>Current savings: <%= goal.balance(@user.id) %></li>
         </ul>
       <% end %>
-   
+   <h1>News Feed</h1>
+
+<ul>
+  <%= render_activity(@all_activities)%>
+</ul>
 
     <h3><%= @user.first_name %>'s Friends</h3>
     <ul>
