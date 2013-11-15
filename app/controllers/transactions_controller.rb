@@ -15,7 +15,6 @@ before_action :authenticated!, :current_user
     @transaction.save
     @currentAchievements = Achievement.where(user: @user, goal: @goal)
 
-
   
       if @achievements.length != @currentAchievements.length
         render json: [@transaction, @currentAchievements, {achievement: false}]
