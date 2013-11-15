@@ -1,16 +1,12 @@
 <div class="container">
   <ul>
     <li>Goal name: <%= @goal.name %></li>
-    <li><img src="<%= @goal.photo_url %>" width="150" alt="photos of goals"></li>
-    <li>Your group's goal: $<%= @goal.final_amount %></</li>
-    <li>Your goal: $<%= @goal.individual_final_amount %></li>
+    <li>Goal amount: $<%= @goal.final_amount %></</li>
     <li>Description: <%= @goal.description %></li>
     <li>Deadline: <%= @goal.transform_date %></li>
   </ul>  
 
-  <h3>Your current savings: <div class="balance">$<%= @goal.balance(@current_user.id) %></div>
-  </h3>
-  <p>Drag the coin into the piggy bank to start saving.</p>
+  <h3>Your current savings: $<div class="balance"><%= @goal.balance(@current_user.id) %></div></h3>
 
   <center>
 
@@ -24,50 +20,15 @@
     <img alt="money-image" class="pig" src="http://cminfo.ca/wp-content/uploads/2013/07/smart-piggy-bank.jpg" style="margin-top: 10px" width="250px" height="250px"/>
   </div>
   
-  <!-- INDIVIDUAL PROGRESS BARS -->
-
-  <div class="chart well">
-    <h2>Your progress:</h2>
+  <div class="well">
     <div class="progress">
-      <div class="progress-bar progress-bar-success individual" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= @goal.progress[@current_user.id][:individual_progress] %>;background-color: <%= @goal.progress[@current_user.id][:color] %>">
+      <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%= @goal.progress(@current_user) %>">
         <span class="sr-only">40% Complete (success)</span>
       </div>
     </div>
   </div>
 
-  <% if @goal.users.length > 1 %>
 
-
-  <!-- EACH FRIEND'S PROGRESS BARS -->
-
-  <div class="chart well">
-    <h2>Each member's progress:</h2>
-    <% @goal.users.each do |user| %>
-    <div class="progress">
-      &nbsp &nbsp <span class="display-name"><strong><%= user.first_name %></strong></span>
-      <div class="progress-bar progress-bar-success bar<%= user.id %>" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: <%=@goal.progress[user.id][:individuals_progress_for_goal] %>;background-color: <%= @goal.progress[user.id][:color] %>">
-        <span class="sr-only"><%= user.first_name %></span>
-      </div>
-      
-    </div>
-    <% end %> 
-  </div>
-
-
- <!-- GROUP PROGRESS BAR -->
-
-<div class="chart well">
-  <h2>Group's progress:</h2>
-  <div class="progress">
-  <% @goal.users.each do |user| %>
-    <div class="progress-bar progress-bar-success stacked<%= user.id %>" style="width: <%=@goal.progress[user.id][:individuals_progress_for_goal] %>;background-color: <%= @goal.progress[user.id][:color] %>">
-      <span class="sr-only">35% Complete (success)</span>
-    </div>
-   <% end %> 
-  </div>
-</div>
-
-<% end %>
 
 <!-- Modal Transaction -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -88,7 +49,7 @@
                 </div>
 
                 <div class="form-group">
-                   <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
+                  <%= text_field_tag :amount, nil, {placeholder: "amount", class: 'field'} %></br>  
                 </div>
     
 
@@ -99,7 +60,28 @@
           <%= submit_tag nil, class: "btn btn-primary" %>
           <% end %>
         </center>
-       </div>
+      </div>
+      </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+  </div><!-- /.modal -->
+
+<!-- Modal Transaction -->
+  <div class="modal fade" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">IT WORKS!</h4>
+        </div>
+
+          <div class="modal-body">
+              
+            
+          <h1>IT WORKS!</h1>
+          <img class="aimage" src="<%= image_path 'gorilla.gif' %>"/>
+
+          </div>
+      </div>
       </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
@@ -109,26 +91,24 @@
 
 <script>
 var currentJSONObject;
-   window.onload = function() {
 
-       $( "#draggable" ).draggable();
-       $( "#droppable" ).droppable({
-         drop: function() {
-           $('#draggable').fadeOut(200);
-           $('#myModal').delay(400).modal('show');
-         }
-       });
+  window.onload = function() {
 
-       addedAmount = 0;
-
+      $( "#draggable" ).draggable();
+      $( "#droppable" ).droppable({
+        drop: function() {
+          $('#draggable').fadeOut(200);
+          $('#myModal').delay(400).modal('show');
+        }
+      });
       bindForm();
     }
 
     function bindForm() {
       $("form").on("submit", function(e) {
         e.preventDefault();
-        var val = $("input#amount").val();
-        addedAmount += parseFloat(val);
+        var addedAmount = $("input#amount").val();
+        var currentAmount = $(".progress-bar-success").data("currentAmount");
 
         $.ajax({
           url: "<%= user_goal_transactions_path(@current_user, @goal) %>",
@@ -136,32 +116,18 @@ var currentJSONObject;
           data: "transaction[" + $(this).serialize(),
           context: this,
           success: function(response){ parseAchievements(response); updateProgress(addedAmount); }
-          success: function(){ updateProgress(addedAmount) }
-          success: function(response){ console.log(response); updateProgress(addedAmount); }
-
         });
       });
     }
 
     function updateProgress(addedAmount) {
-      var newSavings = (addedAmount + <%= @goal.balance(@current_user.id) %>);
-      var iPercentage = ((newSavings / <%= @goal.individual_final_amount %> ) * 100) + "%";
-      var gPercentage = ((newSavings / <%= @goal.final_amount %> ) * 100) + "%";
+      var newSavings = (parseFloat(addedAmount)  + <%= @goal.balance(@current_user.id) %>);
+      var percentage = ((newSavings / <%= @goal.final_amount %> ) * 100) + "%";
 
 
-      var $iProgress = $('.individual');
-      $iProgress.css("width", iPercentage);
-
-      var $gProgress = $(".stacked<%= @current_user.id %>");
-      $gProgress.css("width", gPercentage );
-
-      var $bProgress = $(".bar<%= @current_user.id %>");
-      $bProgress.css("width", gPercentage);
-
-      console.log("Hey i'm just savin with my frands");
+      var $progress = $('.progress-bar');
+      $progress.css("width", percentage);
       $('#myModal').modal('hide');
-      $("input#amount").val(null);
-      $("input#description").val(null);
       $('#draggable').fadeIn(200);
       $('#draggable').css("top", "50px");
 
@@ -171,22 +137,35 @@ var currentJSONObject;
 
 
     function parseAchievements(response) {
-    console.log(response)
-    var json_response = response
-    i = json_response[1].length - 1
-    var achievementName = json_response[1][i].name
-      var penguin = json_response[1][0].name
-      var meerkat = json_response[1][1].name
-      console.log(json_response[1][2].name)
-
+      
+      console.log(response)
+      
+      var json_response = response
+      var newAchievement = json_response[2]
+      var achievementStatus = newAchievement.achievement
+      var displayModal = document.getElementsByClassName("aimage")
+      displayModal.src = ""
+        console.log(displayModal)
+      console.log(achievementStatus )
+      
+      if (achievementStatus == true){
+        console.log(achievementStatus)
+        var i = json_response[1].length - 1
+        var achievementName = json_response[1][i].name
+        var displayModal = document.getElementsByClassName("aimage")
+        console.log(displayModal)
+        showModal();
+      }else{
+        showModal();
+      }
     }
 
+function showModal(){
+  console.log('MODAL!');
+  console.log($("#myModal2"));
+  $("#myModal2").modal("show");
+}
 
 
 
 </script>
-
-
-
-
-
