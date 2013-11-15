@@ -8,6 +8,7 @@ class Achievement < ActiveRecord::Base
   include PublicActivity::Model
   tracked owner: ->(controller, model) { controller && controller.current_user }
 
+  # TODO use meta programming to avoid duplication
   def self.penguin
     where(name: "Penguin")
   end
@@ -26,6 +27,7 @@ class Achievement < ActiveRecord::Base
 
   private
 
+  # TODO use another data structure to store name and range, something like hash + array
   def set_achievement_name
   	progress = goal.progress_as_float(user)
 
