@@ -10,6 +10,7 @@ class Achievement < ActiveRecord::Base
 
   private
 
+  #checks to see if user has won any achievements
   def set_achievement_name
   	progress = goal.progress_as_float(user)
 

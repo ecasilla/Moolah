@@ -5,6 +5,8 @@ before_action :authenticated!, :current_user
   def new
   end
 
+#conditional statements check the onload json object aganist 
+#the object after the transaction for achievements
   def create
     @user = current_user
     @goal = Goal.find(params[:goal_id])

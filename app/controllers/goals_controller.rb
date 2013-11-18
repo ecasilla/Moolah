@@ -23,9 +23,10 @@ before_action :authenticated!, :current_user
     else
       redirect_to new_user_goal_path(current_user)
     end
-    
   end
 
+  #old achievements help pass a object on load so we can check the before an after 
+  #status on each transaction in order to tell if an achievement has been won
   def show
     @user = User.find(params[:user_id])
     @goal = @user.goals.find(params[:id])

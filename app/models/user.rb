@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
     end
   end
 
+#Returns an integer of how many acheievements the user has won
   def penguin
     Achievement.where(user_id: id, name: "Penguin").count 
   end
@@ -40,7 +41,7 @@ class User < ActiveRecord::Base
   def yak
     Achievement.where(user_id: id, name: "Yak").count
   end
-
+#Users total savings
   def total_savings
     self.transactions.inject(0) { |total, transaction| total + transaction.amount }
   end
