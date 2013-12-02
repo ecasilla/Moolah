@@ -1,30 +1,39 @@
 <div class="container">
+<div class="row">
 
+<div class="col-md-6">
+  <p>Drag the coin into the piggy bank to start saving.</p>
 
-  <ul class="info">
+  <center>
+
+  <div class="coin">
+    <img id="draggable" src="http://www.greatnorthernprepper.com/wp-content/uploads/2012/11/Canadian-Gold-Maple-Leaf-Coin.png" height="100" width="100">
+  </div>
+
+</center>
+
+  <div id="droppable">
+    <img alt="money-image" class="pig" src="http://cminfo.ca/wp-content/uploads/2013/07/smart-piggy-bank.jpg" style="margin-top: 10px" width="400px" height="400px"/>
+  </div>
+  
+</div>  
+
+<div class="col-md-6">
+
+<h3>Your current savings: <div class="balance">$<%= @goal.balance(@current_user.id) %></div>
+</h3>  
+
+<div class="info well">
+<ul class="stats">
     <li>Goal name: <%= @goal.name %></li>
     <li>Your group's goal: $<%= @goal.final_amount %></</li>
     <li>Your goal: $<%= @goal.individual_final_amount %></li>
     <li>Description: <%= @goal.description %></li>
     <li>Deadline: <%= @goal.transform_date %></li>
   </ul>  
-   
-  <h3>Your current savings: <div class="balance">$<%= @goal.balance(@current_user.id) %></div>
-  </h3>
-  <p>Drag the coin into the piggy bank to start saving.</p>
 
-  <center>
+</div>  
 
-  <div class="coin">
-    <img id="draggable" src="http://www.greatnorthernprepper.com/wp-content/uploads/2012/11/Canadian-Gold-Maple-Leaf-Coin.png" height="80" width="80">
-  </div>
-
-</center>
-
-  <div id="droppable">
-    <img alt="money-image" class="pig" src="http://cminfo.ca/wp-content/uploads/2013/07/smart-piggy-bank.jpg" style="margin-top: 10px" width="250px" height="250px"/>
-  </div>
-  
   <!-- INDIVIDUAL PROGRESS BARS -->
 
   <div class="chart well">
@@ -69,6 +78,10 @@
 </div>
 
 <% end %>
+
+</div>
+
+</div>
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -184,6 +197,7 @@
     </div><!-- /.modal-dialog -->
   </div><!-- /.modal -->
 
+  
 </div>
 
 <script>

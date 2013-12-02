@@ -19,9 +19,24 @@
     z-index: -1;
 } 
 
+.stats li {
+    font-size: 20px !important;
+    font-weight: bold;
+}
+
+.info {
+ 
+    background-color: lightgray !important;
+    border-radius: 10px !important; 
+    border: solid 1px gray;
+}
 
 ul {
     list-style-type: none;
+}
+
+.row {
+    margin-top: 110px;
 }
 
  .well {
@@ -165,17 +180,18 @@ h4 {
     background-color: #FF4500;
     border-radius: 10px !important; 
     border: solid 1px gray;
+    /*height: 150px;*/
 }
 
 .progress {
-    height: 60px !important;
-    border-radius: 10px !important;
+    height: 30px !important;
+    border-radius: 5px !important;
 }
 
 .display-name {
     position: relative;
-    top: 17px;
-    font-size: 19px;
+    top: 4px;
+    font-size: 16px;
 }
 
 div.tiles {
