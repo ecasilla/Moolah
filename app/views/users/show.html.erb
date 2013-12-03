@@ -4,7 +4,7 @@
   <span class="huh" style="margin-bottom: 40px !important;">
     <img style="margin-top: 100px !important;display:inline" src="<%= @user.photo_url %>"> &nbsp &nbsp
     <h1 style="display:inline;position:relative;top:60px;"><%= @user.first_name %> <%= @user.last_name %></h1>
-    <% if @current_user.id != @user.id %>
+    <% if @current_user.id != @user.id && !(@current_user.friends.pluck(:id).include?(@user.id)) %>
       <%= button_to "Add Friend", user_connections_path(@current_user, friend_id: @user.id), method: 'post', class: "btn btn-primary frand" %>
     <% end %>
   </span>
