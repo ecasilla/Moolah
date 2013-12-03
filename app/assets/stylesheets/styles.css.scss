@@ -18,11 +18,12 @@
     background-color: #77d06d !important;
     padding-top: 80px;
     width: 33% !important;
+    border-left: dotted gray 3px !important;
 }
 
 .col-md-7 {
     position: fixed !important;
-    top: 100px;
+    /*top: 100px;*/
     bottom: 0;
     left: 50px;
 }
@@ -41,6 +42,12 @@
     padding-bottom: 40px;
     z-index: -1;
 } 
+
+.marker {
+    margin-left: 140px;
+    top: 225px !important;
+    position: relative !important;
+}
 
 .info, .chart {
     margin-right: 50px !important;
