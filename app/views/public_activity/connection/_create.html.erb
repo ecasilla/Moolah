@@ -1,6 +1,6 @@
 
 <li class="activity">
-  <img class="newsfeed_img"src="<%= @user.photo_url %>">
+  <img class="newsfeed_img"src="<%= activity.trackable.user.photo_url %>">
   <%= activity.trackable.user.first_name, link_to user_path  %>
   and
   <%= activity.trackable.friend.first_name %> <%= activity.trackable.friend.last_name %> are now BFFs!

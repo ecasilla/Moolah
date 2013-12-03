@@ -1,5 +1,5 @@
 <li class="activity">
-  <img class="newsfeed_img" src="<%= @user.photo_url %>"><%= activity.owner.first_name %> 
+  <img class="newsfeed_img" src="<%= activity.trackable.user.photo_url %>"><%= activity.owner.first_name %> 
   saved 
   $<%= number_with_delimiter(activity.trackable.amount) %>!   
   <%= activity.trackable.description %>! For goal?!  

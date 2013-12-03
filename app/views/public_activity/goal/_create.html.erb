@@ -1,6 +1,5 @@
-
 <li class="activity">
-  <img class="newsfeed_img"src="<%= @user.photo_url %>">
+  <img class="newsfeed_img"src="<%= activity.owner.photo_url  %>">
   <%= activity.owner.first_name %> 
   <%= activity.owner.last_name %> 
   created a new Goal: 
