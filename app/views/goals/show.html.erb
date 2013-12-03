@@ -1,38 +1,48 @@
 <div class="container">
-<div class="row">
+<!-- <div class="row"> -->
 
-<div class="col-md-6">
-  <h3>Drag the coin into the piggy bank to start saving.</h3>
+<div class="col-md-7">
 
-  <center>
-
+<center>
   <div class="coin">
-    <img id="draggable" src="http://www.greatnorthernprepper.com/wp-content/uploads/2012/11/Canadian-Gold-Maple-Leaf-Coin.png" height="100" width="100">
+    <a href="#" data-toggle="tooltip" title="Drop me into the piggy pank.">
+    <img id="draggable" src="http://www.greatnorthernprepper.com/wp-content/uploads/2012/11/Canadian-Gold-Maple-Leaf-Coin.png" height="120" width="120">
+    </a>
   </div>
-
 </center>
 
   <div id="droppable">
     <img alt="money-image" class="pig" src="http://cminfo.ca/wp-content/uploads/2013/07/smart-piggy-bank.jpg" style="margin-top: 10px" width="400px" height="400px"/>
   </div>
+
+  <!-- <div class="info well"> -->
+<table class="table">    
+  <tbody>
+    <tr class="stats-header">
+    <th>Your current savings</th>
+    <th>Goal name</th>
+    <th>Your group's goal</th>
+    <th>Your goal</th>
+    <th>Description</th>
+    <th>Deadline</th>
+  </tr>
+  <tr>
+    <td>$<%= @goal.balance(@current_user.id) %></td>
+    <td><%= @goal.name %></td>
+    <td>$<%= @goal.final_amount %></td>
+    <td>$<%= @goal.individual_final_amount %></td>
+    <td><%= @goal.description %></td>
+    <td><%= @goal.transform_date %></td>
+  </tr>
+  </tbody>  
+</table>
+<!-- </div>  -->
   
 </div>  
 
-<div class="col-md-6">
 
-<h3>Your current savings: <div class="balance">$<%= @goal.balance(@current_user.id) %></div>
-</h3>  
-
-<div class="info well">
-<ul class="stats">
-    <li>Goal name: <%= @goal.name %></li>
-    <li>Your group's goal: $<%= @goal.final_amount %></</li>
-    <li>Your goal: $<%= @goal.individual_final_amount %></li>
-    <li>Description: <%= @goal.description %></li>
-    <li>Deadline: <%= @goal.transform_date %></li>
-  </ul>  
-
-</div>  
+<div class="col-md-5 right-rail">
+ 
 
   <!-- INDIVIDUAL PROGRESS BARS -->
 
@@ -75,13 +85,14 @@
     </div>
   <% end %> 
   </div>
-</div>
+
 
 <% end %>
 
-</div>
+</div> 
 
 </div>
+
 
 <!-- Modal -->
   <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
