@@ -1,7 +1,8 @@
 
 <li class="activity">
+  <img class="newsfeed_img"src="<%= @user.photo_url %>">
   <%= activity.owner.first_name %> 
   <%= activity.owner.last_name %> 
   created a new Goal: 
-  <%= activity.trackable.name %> 
+  <%= link_to activity.trackable.name, user_goal_path(@user,@goal)  %> 
 </li>
