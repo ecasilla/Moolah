@@ -1,3 +1,19 @@
 // Place all the styles related to the activities controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.newsfeed_img{
+  margin: 0px auto; 
+  padding: 5px;
+   width: 50px;
+   float: left; 
+}
+
+.activity{
+  font-family: 'Oxygen', sans-serif;
+   width: 500px; 
+   margin-bottom: 50px;
+
+}
+
+@import url(http://fonts.googleapis.com/css?family=Oxygen)

@@ -34,6 +34,7 @@ before_action :authenticated!, :current_user
   end
 
   def index
+    @goal = Goal.all
   end
 
   def update

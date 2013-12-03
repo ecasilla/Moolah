@@ -1,4 +1,16 @@
 <!-- renders any create actions for all achievements -->
 <li class="activity">
+
   HOT DAMN! <%= activity.owner.first_name %> just got the
   <%= activity.trackable.name.capitalize %> achievement!
+
+  <% if activity.trackable.name.capitalize == "Penguin" %>
+    <img class = "newsfeed_img"src="https://dl.dropboxusercontent.com/u/23639721/Penguin.gif" width = "40px">
+    <% elsif activity.trackable.name.capitalize == "Meerkat"  %>
+    <img class = "newsfeed_img"src="https://dl.dropboxusercontent.com/u/23639721/Meerkat.gif" width = "40px">
+    <% elsif activity.trackable.name.capitalize == "Gorilla" %>
+    <img class = "newsfeed_img"src="https://dl.dropboxusercontent.com/u/23639721/Gorilla.gif" width = "40px">
+    <% elsif activity.trackable.name.capitalize == "Yak" %>
+    <img class = "newsfeed_img"src="https://dl.dropboxusercontent.com/u/23639721/Yak.gif" width = "40px">
+  <% end %>
+</li>

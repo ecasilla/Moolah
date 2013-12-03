@@ -74,20 +74,19 @@
 
   <% end %>
 
-          <div style="width: 95%; border-bottom: dotted 2px gray; margin-top: 80px !important;margin-bottom: 35px !important"></div>
+    <div style="width: 95%; border-bottom: dotted 2px gray; margin-top: 80px !important;margin-bottom: 35px !important"></div>
 
 
    <h2>News Feed</h2>
 
 
-<ul style="position:relative! important; left: 80px;">
+<ul style="position:relative! important; left: 80px;" class= "Newsfeed">
   <%= render_activity(@all_activities)%>
 </ul>
 
-          <div style="width: 95%; border-bottom: dotted 2px gray; margin-top: 80px !important;margin-bottom: 35px !important"></div>
+    <div style="width: 95%; border-bottom: dotted 2px gray; margin-top: 80px !important;margin-bottom: 35px !important"></div>
 
-
-
+<!-- Friend Connections -->
     <h2><%= @user.first_name %>'s Friends</h2>
     <ul>
       <% @user.connections.each do |connection| %>
