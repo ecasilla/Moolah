@@ -29,7 +29,7 @@
     <th>Deadline</th>
   </tr>
   <tr>
-    <td>$<%= @goal.balance(@current_user.id) %></td>
+    <td><div class="balance"><%= @goal.balance(@current_user.id) %></div></td>
     <td><%= @goal.name %></td>
     <td>$<%= @goal.final_amount %></td>
     <td>$<%= @goal.individual_final_amount %></td>
@@ -270,7 +270,7 @@
       $('#draggable').css("top", "50px");
 
       var $balance = $('.balance');
-      $balance.html(newSavings);
+      $balance.html("$" + newSavings);
     }
 
     function calcAchievements(response){
