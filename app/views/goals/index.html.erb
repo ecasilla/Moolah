@@ -1,0 +1,14 @@
+<br>
+<br>
+<br>
+<br>
+
+
+
+<h1 style= "margin: 0 auto; width: 500px; padding:5px;">All Of Your Goals <%= @current_user.first_name %></h1>
+
+<ul style="float:left;">
+  <% @current_user.goals.each do |goal| %>
+  <li style="display:inline; padding:10px;"><%= link_to goal.name, user_goal_path(@current_user.id, goal.id) %></li>
+  <% end %>
+</ul>
