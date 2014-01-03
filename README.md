@@ -1,5 +1,2 @@
 
-Paris was here.
-
-sup!
 
